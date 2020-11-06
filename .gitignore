@@ -2,7 +2,6 @@
 # IntelliJ
 /.idea/
 *.iml
-*.xml
 
 # Compiled class file
 *.class
