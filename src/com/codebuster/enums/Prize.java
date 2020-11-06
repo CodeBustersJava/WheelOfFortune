@@ -10,11 +10,16 @@ public enum Prize implements Possibilities {
     ;
     private Prize prize;
 
-    public Prize randomPrize(){
+    public static Prize randomPrize(){
         int max = Prize.values().length;
         Random random = new Random();
         int index = random.nextInt(max);
         return Prize.values()[index];
+    }
+
+    public static int prizeValue(){
+        Random random = new Random();
+        return random.nextInt(3000)+1000;
     }
 
 }
