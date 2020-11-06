@@ -21,17 +21,18 @@ public class Wheel {
         prizeValue = Prize.prizeValue();
     }
 
-    public Possibilities spinWheel(){
+    public String spinWheel(){
         int upperBound = 1 + negativesLength + moneyLength;
         Random random = new Random();
         int wheelSelection = random.nextInt(upperBound);
         if(wheelSelection == 1){
-            return wheelPrize;
+            return wheelPrize.toString();
         }else if(wheelSelection > 1 && wheelSelection < moneyLength){
-            return Money.values()[wheelSelection - 1];
+            return Money.values()[wheelSelection - 1].toString();
         }else if(wheelSelection >= 1+moneyLength){
-
+            return NegativeConsequence.values()[wheelSelection - 1 - moneyLength].toString();
         }
+        return "";
     }
 
     public static Wheel getInstance(){
