@@ -32,7 +32,7 @@ public class Player {
     }
 
     public void requestConsonant(){
-        //player requests consonant. Puzzle class getLetters.
+        //player requests consonant. com.codebuster.puzzle.Puzzle class getLetters.
 
 
     }
