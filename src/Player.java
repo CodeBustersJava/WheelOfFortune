@@ -1,3 +1,5 @@
+import com.codebuster.enums.Prize;
+import com.codebuster.wheel.Wheel;
 import sun.net.ext.ExtendedSocketOptions;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ public class Player {
     int roundEarningsMoney = 0;
     int totalPrizeMoney= 0;
     List<String> roundEarningsPrize = new ArrayList<>();
+    List<Prize> totalPrizesEarned = new ArrayList<>();
     Wheel wheel = Wheel.getInstance();
 
     //CONSTRUCTOR
@@ -17,9 +20,9 @@ public class Player {
     }
 
     //METHODS
-    public String spinWheel(){
+    public String playerSpinsWheel(){
         //gets Dustin's Wheel method. checking for if it is an string type or int to return corresponding earnings.
-        String result = wheel.randomlySelectedPrize(); //string prize or money
+        String result = wheel.spinWheel(); //string prize or money
         if(result.contains("[a-zA-Z]")){
             roundEarningsPrize.add(result);
         } else{
@@ -30,6 +33,8 @@ public class Player {
 
     public void requestConsonant(){
         //player requests consonant. Puzzle class getLetters.
+
+
     }
 
     public void solvePuzzle(){
