@@ -40,5 +40,11 @@ public class WheelTest {
         });
         assertTrue(averageCheck.get());
     }
+
+    @Test
+    public void getPrizeValueTest(){
+        boolean condition = (wheel.getPrizeValue() >= 1000) && (wheel.getPrizeValue() <= 4000);
+        assertTrue(condition);
+    }
 }
 

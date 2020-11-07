@@ -25,12 +25,11 @@ public class Wheel {
         int wheelSelection = random.nextInt(upperBound);
         if(wheelSelection == 0){
             return wheelPrize.toString();
-        }else if(wheelSelection > 0 && wheelSelection <= moneyLength){
+        }else if(wheelSelection <= moneyLength){
             return Money.values()[wheelSelection - 1].toString();
-        }else if(wheelSelection > moneyLength){
+        }else {
             return NegativeConsequence.values()[wheelSelection - 1 - moneyLength].toString();
         }
-        return "";
     }
 
     public int getPrizeValue() {
