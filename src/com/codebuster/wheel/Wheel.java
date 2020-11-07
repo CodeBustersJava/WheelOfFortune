@@ -2,7 +2,6 @@ package com.codebuster.wheel;
 
 import com.codebuster.enums.Money;
 import com.codebuster.enums.NegativeConsequence;
-import com.codebuster.enums.Possibilities;
 import com.codebuster.enums.Prize;
 
 import java.util.Random;
@@ -24,11 +23,11 @@ public class Wheel {
         int upperBound = 1 + negativesLength + moneyLength;
         Random random = new Random();
         int wheelSelection = random.nextInt(upperBound);
-        if(wheelSelection == 1){
+        if(wheelSelection == 0){
             return wheelPrize.toString();
-        }else if(wheelSelection > 1 && wheelSelection < moneyLength){
+        }else if(wheelSelection > 0 && wheelSelection <= moneyLength){
             return Money.values()[wheelSelection - 1].toString();
-        }else if(wheelSelection >= 1+moneyLength){
+        }else if(wheelSelection > moneyLength){
             return NegativeConsequence.values()[wheelSelection - 1 - moneyLength].toString();
         }
         return "";
