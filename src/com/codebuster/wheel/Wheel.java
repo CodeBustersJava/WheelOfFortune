@@ -11,7 +11,6 @@ public class Wheel {
     private static Wheel instance = null;
     private Prize wheelPrize;
     private int prizeValue;
-    private Possibilities currentWheelSelection;
     private static int negativesLength = NegativeConsequence.values().length;
     private static int moneyLength = Money.values().length;
 
@@ -21,17 +20,22 @@ public class Wheel {
         prizeValue = Prize.prizeValue();
     }
 
-    public Possibilities spinWheel(){
+    public String spinWheel(){
         int upperBound = 1 + negativesLength + moneyLength;
         Random random = new Random();
         int wheelSelection = random.nextInt(upperBound);
         if(wheelSelection == 1){
-            return wheelPrize;
+            return wheelPrize.toString();
         }else if(wheelSelection > 1 && wheelSelection < moneyLength){
-            return Money.values()[wheelSelection - 1];
+            return Money.values()[wheelSelection - 1].toString();
         }else if(wheelSelection >= 1+moneyLength){
-
+            return NegativeConsequence.values()[wheelSelection - 1 - moneyLength].toString();
         }
+        return "";
+    }
+
+    public int getPrizeValue() {
+        return prizeValue;
     }
 
     public static Wheel getInstance(){
