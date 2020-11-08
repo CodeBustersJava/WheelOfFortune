@@ -23,6 +23,14 @@ public class PuzzleBoardTest {
                 System.out.print(lines[j]);
             }
         }
+        PuzzleBoard puzzle3 = new PuzzleBoard(Category.AUTHOR, "Bonnie");
+        String[][] puzzleArray3 = puzzle3.getPuzzleBoard();
+        for(int j = 0; j < puzzleArray3[3].length; j++) {
+            System.out.println();
+            for (String[] lines : puzzleArray3) {
+                System.out.print(lines[j]);
+            }
+        }
     }
 
 //    @Test
