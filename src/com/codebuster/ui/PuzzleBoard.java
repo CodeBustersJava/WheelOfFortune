@@ -13,11 +13,11 @@ public class PuzzleBoard {
     private final int letterHeight = 5;
     private final int letterWidth = 10;
 
-    PuzzleBoard(Category category, String puzzle) {
-        setCategory(category);
-        setPuzzle(puzzle);
+    public PuzzleBoard(Category category, String puzzle) {
         puzzleBoard = new String[puzzle.length()][letterHeight];
         puzzleBoardModel = new boolean[puzzle.length()];
+        setCategory(category);
+        setPuzzle(puzzle);
     }
 
     private void buildDisplay() {
@@ -39,7 +39,7 @@ public class PuzzleBoard {
         }
     }
 
-    private String[] storeTempLetter(char letter) {
+    public String[] storeTempLetter(char letter) {
         String[] displayLetter = new String[letterHeight];
         String letterString;
         if(letter == '_'){
@@ -54,8 +54,8 @@ public class PuzzleBoard {
             System.out.println(e.getMessage());
             return new String[0];
         }
-        File file = new File(directory + File.pathSeparator
-                + "Letters" + File.pathSeparator + letterString + ".txt");
+        File file = new File(directory + File.separator
+                + "Letters" + File.separator + letterString + ".txt");
         Scanner sc;
         try {
             sc = new Scanner(file);
