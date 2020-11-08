@@ -11,7 +11,6 @@ public class PuzzleBoard {
     private String category;
     private String puzzle;
     private final int letterHeight = 5;
-    private final int letterWidth = 10;
 
     public PuzzleBoard(Category category, String puzzle) {
         puzzleBoard = new String[puzzle.length()][letterHeight];
@@ -21,25 +20,21 @@ public class PuzzleBoard {
     }
 
     private void buildDisplay() {
-        String[] tempLetter = null;
         for (int letter = 0; letter < puzzle.length(); letter++) {
             if (puzzle.charAt(letter) != ' ') {
                 if (puzzleBoardModel[letter] == false) {
-                    if (tempLetter == null) {
-                        tempLetter = storeTempLetter(puzzle.charAt(letter));
+                        puzzleBoard[letter] = storeLetter(puzzle.charAt(letter));
                         puzzleBoardModel[letter] = true;
-                    }
-                    puzzleBoard[letter] = tempLetter;
                 }
             } else {
                 for (int row = 0; row < letterHeight; row++) {
-                        puzzleBoard[letter][row] = "       ";
+                        puzzleBoard[letter][row] = "     ";
                 }
             }
         }
     }
 
-    public String[] storeTempLetter(char letter) {
+    private String[] storeLetter(char letter) {
         String[] displayLetter = new String[letterHeight];
         String letterString;
         if(letter == '_'){
@@ -71,6 +66,10 @@ public class PuzzleBoard {
 
     public void setCategory(Category category) {
         this.category = category.toString();
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public void setPuzzle(String puzzle) {
