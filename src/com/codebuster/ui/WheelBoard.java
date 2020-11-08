@@ -8,17 +8,22 @@ public class WheelBoard {
     private final int numberHeight = 5;
     private final int letterHeight = 5;
     private int money = 0;
-    private String prize;
+    private String prize = "";
     private String moneyString = String.valueOf(money);
-    private String[][] moneyBoard = new String[moneyString.length() + 1][numberHeight];
-    private String[][] prizeBoard = new String[prize.length()][letterHeight];
+    private String[][] moneyBoard;
+    private String[][] prizeBoard;
 
-    WheelBoard(){}
+    public WheelBoard(String prize){
+        setMoney(0);
+        prizeBoard = new String[prize.length()][letterHeight];
+
+        setPrize(prize);
+    }
 
     private void buildMoneyDisplay() {
-        moneyBoard[0] = storeNumber('$');
-        for (int number = 1; number < moneyString.length(); number++) {
-            moneyBoard[number] = storeNumber(moneyString.charAt(number));
+        moneyBoard[0] = storeLetter('$');
+        for (int number = 0; number < moneyString.length(); number++) {
+            moneyBoard[number+1] = storeNumber(moneyString.charAt(number));
         }
     }
 
@@ -98,9 +103,22 @@ public class WheelBoard {
 
     public void setPrize(String prize) {
         this.prize = prize;
+        buildPrizeDisplay();
     }
 
     public String[][] getPrizeBoard() {
         return prizeBoard;
     }
+
+    public void setMoney(int money) {
+        this.money = money;
+        setMoneyString(money);
+    }
+
+    public void setMoneyString(int moneyString) {
+        this.moneyString = String.valueOf(this.money);
+        moneyBoard = new String[this.moneyString.length()+1][numberHeight];
+        buildMoneyDisplay();
+    }
+
 }
