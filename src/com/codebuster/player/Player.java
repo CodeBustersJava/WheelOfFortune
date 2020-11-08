@@ -46,6 +46,7 @@ public class Player {
         //if BANKRUPTCY money = 0 and print
         else if (result.equals("BANKRUPTCY")) {
             roundEarningsMoney = 0;
+            loseTurn = true;
         }
         //if MONEY use regex to find matching numbers from the enum choices.
         else if (result.matches("[0-9]+")) {
@@ -56,7 +57,14 @@ public class Player {
             potentialPrize = result;
     }
 
-    public void requestConsonant(String consonant) {
+    public boolean ableToGo(){
+        if(!loseTurn){
+            return true;
+        }
+        return false;
+    }
+
+    public void requestConsonant() {
         //player requests consonant through input. check if the input is right.
         System.out.println("Please enter a consonant: ");
         String input = scanner.nextLine();
@@ -95,7 +103,7 @@ public class Player {
         if (roundEarningsMoney >= 250) {
             System.out.println("Player has enough money to buy a vowel");
         }else{
-            System.out.println("not enough money to buy a vowel");
+            System.out.println("I'm sorry player does not have enough money to buy a vowel");
         }
     }
 
@@ -107,5 +115,29 @@ public class Player {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public int getPotentialMoney() {
+        return potentialMoney;
+    }
+
+    public String getPotentialPrize() {
+        return potentialPrize;
+    }
+
+    public int getRoundEarningsMoney() {
+        return roundEarningsMoney;
+    }
+
+    public int getTotalPrizeMoney() {
+        return totalPrizeMoney;
+    }
+
+    public List<String> getRoundEarningsPrize() {
+        return roundEarningsPrize;
+    }
+
+    public List<String> getTotalPrizesEarned() {
+        return totalPrizesEarned;
     }
 }
