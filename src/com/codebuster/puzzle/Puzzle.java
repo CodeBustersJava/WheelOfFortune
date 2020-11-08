@@ -1,13 +1,39 @@
-//package com.codebuster.puzzle;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
-//
-//import com.codebuster.enums.Category;
-//
-//public class Puzzle {
-//
+package com.codebuster.puzzle;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import com.codebuster.enums.Category;
+
+public class Puzzle {
+    public static String currentPhrase;
+
+    List<String> Occupation = Arrays.asList("Doctor", "Teacher", "Dog_Walker", "Software_Developer", "Musician", "Film_Producer");
+    List<String> Quotations = Arrays.asList("It's raining cats and dogs", "Hasta La Vista Baby", "A party without cake is just a meeting", "Talk is cheap, show me the code", "Musician", "Film_Producer");
+    List<String> Amazon_Leadership_Principles = Arrays.asList("Dive Deep", "Costumer Obsession", "Are Right, A Lot", "Ownership", "Learn and Be Curios", "Think Big", "Insist on Highest Standards", "Invent and Simplify", "Hire and Develop the Best", "Bias for Action", "Earn Trust", "Frugality", "Have Backbone Disagree and Commit", "Deliver Results");
+    List<String> Categories = Arrays.asList("Occupation", "Quotations", "Amazon_Leadership_Principles");
+
+    public String randomPhrase() {
+        //shuffle and get the first category.
+        Collections.shuffle(Categories);
+    String currentCategory = Categories.get(0);
+
+    if(currentCategory.equalsIgnoreCase("Occupation")){
+        Collections.shuffle(Occupation);
+        currentPhrase = Occupation.get(0);
+        System.out.println(currentPhrase);
+    } else if(currentCategory.equalsIgnoreCase("Quotations")){
+        Collections.shuffle(Quotations);
+        currentPhrase = Quotations.get(0);
+    } else if(currentCategory.equalsIgnoreCase("Amazon_Leadership_Principles")){
+        Collections.shuffle(Amazon_Leadership_Principles);
+        currentPhrase = Amazon_Leadership_Principles.get(0);
+    }
+    return currentPhrase;
+    }
+}
 //    //FIELDS or INSTANCE VARIABLES
 //    char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 //    private Category category; // Category Enum
