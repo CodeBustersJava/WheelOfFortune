@@ -1,6 +1,6 @@
 package com.codebuster.ui;
 
-import com.codebuster.enums.Category;
+import com.codebuster.puzzle.Puzzle;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -11,7 +11,6 @@ public class PuzzleBoard {
     private String category;
     private String puzzle;
     private final int letterHeight = 5;
-
     public PuzzleBoard(String category, String puzzle) {
         puzzleBoard = new String[puzzle.length()][letterHeight];
         puzzleBoardModel = new boolean[puzzle.length()];

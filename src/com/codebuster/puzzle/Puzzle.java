@@ -1,7 +1,6 @@
 package com.codebuster.puzzle;
 
 import com.codebuster.game.Game;
-import com.codebuster.player.Player;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +16,7 @@ public class Puzzle {
     List<String> Occupation = Arrays.asList("DOCTOR", "TEACHER", "DOG WALKER", "SOFTWARE DEVELOPER", "MUSICIAN", "FILM PRODUCER");
     List<String> Quotations = Arrays.asList("IT IS RAINING CATS AND DOGS", "HASTA LA VISTA BABY", "A PARTY WITHOUT CAKE IS JUST A MEETING", "TALK IS CHEAP SHOW ME THE CODE");
     List<String> Amazon_Leadership_Principles = Arrays.asList("DIVE DEEP", "CUSTOMER OBSESSION", "ARE RIGHT A LOT", "OWNERSHIP", "LEARN AND BE CURIOS", "THINK BIG", "INSIST ON HIGHEST STANDARDS",
-    "INVENT AND SIMPLIFY", "HIRE AND DEVELOP THE BEST", "BIAS FOR ACTION", "EARN TRUST", "FRUGALITY", "HAVE BACKBONE DISAGREE AND COMMIT", "DELIVER RESULTS");
+            "INVENT AND SIMPLIFY", "HIRE AND DEVELOP THE BEST", "BIAS FOR ACTION", "EARN TRUST", "FRUGALITY", "HAVE BACKBONE DISAGREE AND COMMIT", "DELIVER RESULTS");
     List<String> Categories = Arrays.asList("Occupation", "Quotations", "Amazon Leadership Principles");
 
     public String randomPhrase() {
@@ -38,7 +37,6 @@ public class Puzzle {
         return currentPhrase;
     }
 
-
     public static String showPuzzle() {
         char[] puzzle = currentPhrase.toCharArray();
         StringBuilder currentPuzzle = new StringBuilder();
@@ -55,7 +53,7 @@ public class Puzzle {
         return currentPuzzle.toString();
     }
 
-    public static void solvePuzzle(String input) {
+        public static void solvePuzzle(String input) {
         if (input.equals(currentPhrase)) {
             System.out.println("Congratulations, you won!!! Collect your $5000 reward");
             int totalWinnings = Game.currentPlayer.roundEarningsMoney;
