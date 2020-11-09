@@ -7,8 +7,17 @@ public class Game {
     private PuzzleBoard puzzleBoard;
     // puzzle stuff
     // player stuff
-    Game(PuzzleBoard puzzleBoard){
+    public Game(Category category, String puzzle){
+        puzzleBoard = new PuzzleBoard(category, puzzle);
+        start();
+    }
 
+    public void start(){
+        clearConsole();
+        showSplashScreen();
+        clearConsole();
+        showPuzzle();
+        showCategory();
     }
 
     public void showSplashScreen(){}
@@ -25,7 +34,7 @@ public class Game {
 
     public void showCategory(){
         System.out.println();
-        System.out.println(puzzleBoard.getCategory());
+        System.out.println("Category: " + puzzleBoard.getCategory());
     }
 
     public static void clearConsole() {
@@ -33,10 +42,10 @@ public class Game {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
                 ProcessBuilder p = new ProcessBuilder("cls");
-                p.inheritIO().start();
+                p.inheritIO().start().waitFor();
             } else {
                 ProcessBuilder p = new ProcessBuilder("clear");
-                p.inheritIO().start();
+                p.inheritIO().start().waitFor();
             }
         } catch (final Exception e) {
             //  Handle any exceptions.
