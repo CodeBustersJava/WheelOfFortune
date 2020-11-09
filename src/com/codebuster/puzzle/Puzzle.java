@@ -39,19 +39,20 @@ public class Puzzle {
     }
 
 
-    public static void showPuzzle() {
+    public static String showPuzzle() {
         char[] puzzle = currentPhrase.toCharArray();
+        StringBuilder currentPuzzle = new StringBuilder();
         //iterate through each letter in puzzle
         for (char letter : puzzle) {
             if (guessedRightLetters.contains(letter)) {
-                System.out.print(letter);
+                currentPuzzle.append(letter);
             } else if (letter == ' ') {
-                System.out.print(" ");
+                currentPuzzle.append(" ");
             } else {
-                System.out.print("_");
+                currentPuzzle.append("_");
             }
         }
-        System.out.println();
+        return currentPuzzle.toString();
     }
 
     public static void solvePuzzle(String input) {

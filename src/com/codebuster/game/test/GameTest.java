@@ -9,7 +9,7 @@ public class GameTest {
     Game game;
     @Before
     public void init(){
-        game = new Game(Category.AROUND_THE_HOUSE, "Lightbulb and Lampshade");
+        game = new Game();
     }
 
     @Test

@@ -12,7 +12,7 @@ public class PuzzleBoard {
     private String puzzle;
     private final int letterHeight = 5;
 
-    public PuzzleBoard(Category category, String puzzle) {
+    public PuzzleBoard(String category, String puzzle) {
         puzzleBoard = new String[puzzle.length()][letterHeight];
         puzzleBoardModel = new boolean[puzzle.length()];
         setCategory(category);
@@ -64,8 +64,8 @@ public class PuzzleBoard {
         return displayLetter;
     }
 
-    public void setCategory(Category category) {
-        this.category = category.toString();
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getCategory() {
