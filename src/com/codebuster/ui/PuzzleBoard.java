@@ -23,7 +23,9 @@ public class PuzzleBoard {
             if (puzzle.charAt(letter) != ' ') {
                 if (puzzleBoardModel[letter] == false) {
                         puzzleBoard[letter] = storeLetter(puzzle.charAt(letter));
-                        puzzleBoardModel[letter] = true;
+                        if(puzzle.charAt(letter) != '_') {
+                            puzzleBoardModel[letter] = true;
+                        }
                 }
             } else {
                 for (int row = 0; row < letterHeight; row++) {
@@ -63,6 +65,11 @@ public class PuzzleBoard {
         return displayLetter;
     }
 
+    public void updatePuzzle(String puzzle){
+        this.puzzle = puzzle;
+        buildDisplay();
+    }
+
     public void setCategory(String category) {
         this.category = category;
     }
@@ -73,6 +80,7 @@ public class PuzzleBoard {
 
     public void setPuzzle(String puzzle) {
         this.puzzle = puzzle;
+        puzzleBoardModel = new boolean[this.puzzle.length()];
         buildDisplay();
     }
 
