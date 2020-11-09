@@ -54,6 +54,7 @@ public class Player {
         } else {
             //else potentialPrize
             potentialPrize = result;
+            potentialMoney = wheel.getPrizeValue();
         }
     }
 //    //true or false for player being able to play or loses turn.
@@ -67,20 +68,21 @@ public class Player {
     public void requestConsonant() {
         //player requests consonant through input. check if the input is right.
         //checking is happening in Puzzle class from consonants list.
-        System.out.println("Please enter a consonant: ");
+        System.out.println("Please enter only one consonant: ");
         String input = scanner.nextLine().toUpperCase();
-        if (Puzzle.consonants.contains(input)){
+        if (Puzzle.consonants.contains(input)) {
             checkIfRight(input);
-    }else {//when player chooses not a consonant they lose a turn as penalty.
+        } else {
+            //when player chooses not a consonant they lose a turn as penalty.
             System.out.println(input + " is not a consonant!");
-            System.out.println("Penalty for freeloading: LOSE A TURN");
+            System.out.println("Penalty for freeloading: You lose a turn!");
             Game.getTheNextPlayer();
+        }
     }
-}
 
     public void checkIfRight(String consonant) {
         if (Puzzle.currentPhrase.contains(consonant)) {
-            System.out.println("You guessed right, reveal the consonant: " + consonant);
+            System.out.println("Guessed right, reveal the consonant: " + consonant);
             //after player guesses right:
             // potential earnings turn into actual earnings money/prize (print both).
             roundEarningsMoney = potentialMoney + roundEarningsMoney;
@@ -90,8 +92,7 @@ public class Player {
             getRoundEarningsPrize();
             Puzzle.guessedRightLetters.add(consonant.charAt(0));
             Puzzle.showPuzzle();
-        }
-        else{
+        } else {
             System.out.println("Guessed wrong!");
             potentialMoney = 0;
             //potentialPrize.isEmpty();
@@ -105,16 +106,14 @@ public class Player {
             String input = scanner.nextLine().toUpperCase();
             if (Puzzle.vowels.contains(input)) {
                 checkIfRight(input);
+            } else {
+                System.out.println(input + " is not a vowel!");
+                System.out.println("Penalty for freeloading: LOSE A TURN!");
+                Game.getTheNextPlayer();
             }
-            else {
-            System.out.println(input + " is not a vowel!");
-            System.out.println("Penalty for freeloading: LOSE A TURN!");
-            Game.getTheNextPlayer();
+        } else {
+            System.out.println("You do not have enough money to buy a vowel.");
         }
-    }
-        else{
-        System.out.println("You do not have enough money to buy a vowel.");
-    }
     }
 
     //ACCESSORS
@@ -123,7 +122,7 @@ public class Player {
         return this;
     }
 
-    public  int getRoundEarningsMoney() {
+    public int getRoundEarningsMoney() {
         return roundEarningsMoney;
     }
 
@@ -132,13 +131,13 @@ public class Player {
     }
 
     public void getRoundEarningsPrize() {
-         for(String prize : this.roundEarningsPrize){
-             if(prize != null){
-                 System.out.println(prize);
-             }
+        for (String prize : this.roundEarningsPrize) {
+            if (prize != null) {
+                System.out.println(prize);
+            }
         }
 
-   }
+    }
 
     public String getName() {
         return name;

@@ -87,6 +87,7 @@ public class Game {
             System.out.println();
             showPlayers();
             guess();
+            puzzleBoard.setPuzzle(puzzle.showPuzzle());
         }
     }
 
