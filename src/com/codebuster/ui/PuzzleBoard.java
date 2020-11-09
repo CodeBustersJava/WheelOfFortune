@@ -1,6 +1,6 @@
 package com.codebuster.ui;
 
-import com.codebuster.enums.Category;
+import com.codebuster.puzzle.Puzzle;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -11,8 +11,7 @@ public class PuzzleBoard {
     private String category;
     private String puzzle;
     private final int letterHeight = 5;
-
-    public PuzzleBoard(Category category, String puzzle) {
+    public PuzzleBoard(String category, String puzzle) {
         puzzleBoard = new String[puzzle.length()][letterHeight];
         puzzleBoardModel = new boolean[puzzle.length()];
         setCategory(category);
@@ -24,7 +23,9 @@ public class PuzzleBoard {
             if (puzzle.charAt(letter) != ' ') {
                 if (puzzleBoardModel[letter] == false) {
                         puzzleBoard[letter] = storeLetter(puzzle.charAt(letter));
-                        puzzleBoardModel[letter] = true;
+                        if(puzzle.charAt(letter) != '_') {
+                            puzzleBoardModel[letter] = true;
+                        }
                 }
             } else {
                 for (int row = 0; row < letterHeight; row++) {
@@ -64,8 +65,13 @@ public class PuzzleBoard {
         return displayLetter;
     }
 
-    public void setCategory(Category category) {
-        this.category = category.toString();
+    public void updatePuzzle(String puzzle){
+        this.puzzle = puzzle;
+        buildDisplay();
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getCategory() {
@@ -74,6 +80,7 @@ public class PuzzleBoard {
 
     public void setPuzzle(String puzzle) {
         this.puzzle = puzzle;
+        puzzleBoardModel = new boolean[this.puzzle.length()];
         buildDisplay();
     }
 
