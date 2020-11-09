@@ -1,39 +1,76 @@
 package com.codebuster.puzzle;
 
+import com.codebuster.game.Game;
+import com.codebuster.player.Player;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.codebuster.enums.Category;
-
 public class Puzzle {
     public static String currentPhrase;
-
-    List<String> Occupation = Arrays.asList("Doctor", "Teacher", "Dog_Walker", "Software_Developer", "Musician", "Film_Producer");
-    List<String> Quotations = Arrays.asList("It's raining cats and dogs", "Hasta La Vista Baby", "A party without cake is just a meeting", "Talk is cheap, show me the code", "Musician", "Film_Producer");
-    List<String> Amazon_Leadership_Principles = Arrays.asList("Dive Deep", "Costumer Obsession", "Are Right, A Lot", "Ownership", "Learn and Be Curios", "Think Big", "Insist on Highest Standards", "Invent and Simplify", "Hire and Develop the Best", "Bias for Action", "Earn Trust", "Frugality", "Have Backbone Disagree and Commit", "Deliver Results");
-    List<String> Categories = Arrays.asList("Occupation", "Quotations", "Amazon_Leadership_Principles");
+    public static String currentCategory;
+    public static boolean solvedPuzzle = false;
+    public static List<Character> guessedRightLetters = new ArrayList<>();
+    public static List<String> consonants = Arrays.asList("B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z", "Y");
+    public static List<String> vowels = Arrays.asList("A", "E", "I", "O", "U");
+    List<String> Occupation = Arrays.asList("DOCTOR", "TEACHER", "DOG WALKER", "SOFTWARE DEVELOPER", "MUSICIAN", "FILM PRODUCER");
+    List<String> Quotations = Arrays.asList("IT IS RAINING CATS AND DOGS", "HASTA LA VISTA BABY", "A PARTY WITHOUT CAKE IS JUST A MEETING", "TALK IS CHEAP SHOW ME THE CODE");
+    List<String> Amazon_Leadership_Principles = Arrays.asList("DIVE DEEP", "CUSTOMER OBSESSION", "ARE RIGHT A LOT", "OWNERSHIP", "LEARN AND BE CURIOS", "THINK BIG", "INSIST ON HIGHEST STANDARDS",
+    "INVENT AND SIMPLIFY", "HIRE AND DEVELOP THE BEST", "BIAS FOR ACTION", "EARN TRUST", "FRUGALITY", "HAVE BACKBONE DISAGREE AND COMMIT", "DELIVER RESULTS");
+    List<String> Categories = Arrays.asList("Occupation", "Quotations", "Amazon Leadership Principles");
 
     public String randomPhrase() {
         //shuffle and get the first category.
         Collections.shuffle(Categories);
-    String currentCategory = Categories.get(0);
+        currentCategory = Categories.get(0);
 
-    if(currentCategory.equalsIgnoreCase("Occupation")){
-        Collections.shuffle(Occupation);
-        currentPhrase = Occupation.get(0);
-        System.out.println(currentPhrase);
-    } else if(currentCategory.equalsIgnoreCase("Quotations")){
-        Collections.shuffle(Quotations);
-        currentPhrase = Quotations.get(0);
-    } else if(currentCategory.equalsIgnoreCase("Amazon_Leadership_Principles")){
-        Collections.shuffle(Amazon_Leadership_Principles);
-        currentPhrase = Amazon_Leadership_Principles.get(0);
+        if (currentCategory.equalsIgnoreCase("Occupation")) {
+            Collections.shuffle(Occupation);
+            currentPhrase = Occupation.get(0);
+        } else if (currentCategory.equalsIgnoreCase("Quotations")) {
+            Collections.shuffle(Quotations);
+            currentPhrase = Quotations.get(0);
+        } else if (currentCategory.equalsIgnoreCase("Amazon Leadership Principles")) {
+            Collections.shuffle(Amazon_Leadership_Principles);
+            currentPhrase = Amazon_Leadership_Principles.get(0);
+        }
+        return currentPhrase;
     }
-    return currentPhrase;
+
+
+    public static void showPuzzle() {
+        char[] puzzle = currentPhrase.toCharArray();
+        //iterate through each letter in puzzle
+        for (char letter : puzzle) {
+            if (guessedRightLetters.contains(letter)) {
+                System.out.print(letter);
+            } else if (letter == ' ') {
+                System.out.print(" ");
+            } else {
+                System.out.print("_");
+            }
+        }
+        System.out.println();
+    }
+
+    public static void solvePuzzle(String input) {
+        if (input.equals(currentPhrase)) {
+            System.out.println("Congratulations, you won!!! Collect your $5000 reward");
+            int totalWinnings = Game.currentPlayer.roundEarningsMoney;
+            totalWinnings += 5000;
+            System.out.println("Your prize money is $" + totalWinnings);
+            System.out.println("Your prizes ");
+            Game.currentPlayer.getRoundEarningsPrize();
+            solvedPuzzle = true;
+        } else {
+            System.out.println("You guessed wrong, better luck next time!");
+            Game.getTheNextPlayer();
+        }
     }
 }
+
+
 //    //FIELDS or INSTANCE VARIABLES
 //    char[] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 //    private Category category; // Category Enum

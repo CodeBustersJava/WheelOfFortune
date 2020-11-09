@@ -1,26 +1,24 @@
 package com.codebuster.player;
 
+import com.codebuster.game.Game;
 import com.codebuster.puzzle.Puzzle;
 import com.codebuster.wheel.Wheel;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /*
 Aliona's Work
  */
 public class Player {
     Player player;
-    String name;
-    int potentialMoney;
-    String potentialPrize;
-    int roundEarningsMoney = 0;
-    int totalPrizeMoney = 0;
-    List<String> roundEarningsPrize = new ArrayList<>();
-    List<String> totalPrizesEarned = new ArrayList<>();
+    public String name;
+    public int potentialMoney;
+    public String potentialPrize;
+    public int roundEarningsMoney = 0;
+    //int totalPrizeMoney = 0;
+    private List<String> roundEarningsPrize = new ArrayList<>();
     Wheel wheel = Wheel.getInstance();
-    boolean loseTurn = false;
+    //boolean loseTurn = false;
     Scanner scanner = new Scanner(System.in);
 
     //CONSTRUCTOR
@@ -37,74 +35,87 @@ public class Player {
 
         //if empty "" print empty.
         if (result.equals("")) {
-            System.out.println("empty");
+            System.out.println("You did not get a reward");
         }
-        //if LOSE_TURN change loseTurn to true and print.
+        //if LOSE_TURN get the next player to play and print out the player's name whose turn it is.
         else if (result.equals("LOSE_TURN")) {
-            loseTurn = true;
+            System.out.println("You lose a turn");
+            Game.getTheNextPlayer();
+            System.out.println("Currently playing: " + Game.currentPlayer.name);
         }
         //if BANKRUPTCY money = 0 and print
         else if (result.equals("BANKRUPTCY")) {
-            roundEarningsMoney = 0;
-            loseTurn = true;
+            this.roundEarningsMoney = 0;
+            System.out.println("$" + roundEarningsMoney);
         }
-        //if MONEY use regex to find matching numbers from the enum choices.
+        //check if the award is money or prize
         else if (result.matches("[0-9]+")) {
-            //stores in temporary variable potentialMoney
+            //store result in a temporary variable 'potentialMoney'.
             potentialMoney = Integer.parseInt(result);
-        } else
+        } else {
             //else potentialPrize
             potentialPrize = result;
-    }
-
-    public boolean ableToGo(){
-        if(!loseTurn){
-            return true;
         }
-        return false;
     }
+//    //true or false for player being able to play or loses turn.
+//    public boolean ableToGo() {
+//        if (!loseTurn) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     public void requestConsonant() {
         //player requests consonant through input. check if the input is right.
+        //checking is happening in Puzzle class from consonants list.
         System.out.println("Please enter a consonant: ");
-        String input = scanner.nextLine();
-        checkIfRightConsonant(input);
+        String input = scanner.nextLine().toUpperCase();
+        if (Puzzle.consonants.contains(input)){
+            checkIfRight(input);
+    }else {//when player chooses not a consonant they lose a turn as penalty.
+            System.out.println(input + " is not a consonant!");
+            System.out.println("Penalty for freeloading: LOSE A TURN");
+            Game.getTheNextPlayer();
     }
+}
 
-    public void checkIfRightConsonant(String consonant) {
+    public void checkIfRight(String consonant) {
         if (Puzzle.currentPhrase.contains(consonant)) {
             System.out.println("You guessed right, reveal the consonant: " + consonant);
             //after player guesses right:
             // potential earnings turn into actual earnings money/prize (print both).
             roundEarningsMoney = potentialMoney + roundEarningsMoney;
-            System.out.println(roundEarningsMoney);
+            System.out.println("Money Earned: $" + roundEarningsMoney);
             roundEarningsPrize.add(potentialPrize);
-            System.out.println(roundEarningsPrize);
+            System.out.println("Prizes Earned: ");
+            getRoundEarningsPrize();
+            Puzzle.guessedRightLetters.add(consonant.charAt(0));
+            Puzzle.showPuzzle();
+        }
+        else{
+            System.out.println("Guessed wrong!");
+            potentialMoney = 0;
+            //potentialPrize.isEmpty();
+            Game.getTheNextPlayer();
         }
     }
 
-    public void solvePuzzle() {
-        //player guesses the entire puzzle
-        System.out.println("Please guess the phrase to solve the puzzle: ");
-        String inputPuzzle = scanner.nextLine();
-        if (Puzzle.currentPhrase.equalsIgnoreCase(inputPuzzle)) {
-            System.out.println("The phrase is correct. Congratulations you win!");
-            totalPrizesEarned = roundEarningsPrize;
-            totalPrizeMoney = roundEarningsMoney;
-        } else {
-            roundEarningsMoney = 0;
-            roundEarningsPrize.isEmpty();
-        }
-    }
-
-    //Game class should have this method initiated.
     public void buyVowel() {
-        System.out.println("spend 250$ to buy vowel");
         if (roundEarningsMoney >= 250) {
-            System.out.println("Player has enough money to buy a vowel");
-        }else{
-            System.out.println("I'm sorry player does not have enough money to buy a vowel");
+            System.out.println("Enter a vowel: ");
+            String input = scanner.nextLine().toUpperCase();
+            if (Puzzle.vowels.contains(input)) {
+                checkIfRight(input);
+            }
+            else {
+            System.out.println(input + " is not a vowel!");
+            System.out.println("Penalty for freeloading: LOSE A TURN!");
+            Game.getTheNextPlayer();
         }
+    }
+        else{
+        System.out.println("You do not have enough money to buy a vowel.");
+    }
     }
 
     //ACCESSORS
@@ -117,27 +128,22 @@ public class Player {
         this.player = player;
     }
 
-    public int getPotentialMoney() {
-        return potentialMoney;
-    }
-
-    public String getPotentialPrize() {
-        return potentialPrize;
-    }
-
-    public int getRoundEarningsMoney() {
+    public  int getRoundEarningsMoney() {
         return roundEarningsMoney;
     }
 
-    public int getTotalPrizeMoney() {
-        return totalPrizeMoney;
+    public void setRoundEarningsMoney(int roundEarningsMoney) {
+        this.roundEarningsMoney = roundEarningsMoney;
     }
 
-    public List<String> getRoundEarningsPrize() {
-        return roundEarningsPrize;
-    }
+    public void getRoundEarningsPrize() {
+         for(String prize : this.roundEarningsPrize){
+             if(prize != null){
+                 System.out.println(prize);
+             }
+        }
 
-    public List<String> getTotalPrizesEarned() {
-        return totalPrizesEarned;
-    }
+   }
+
+
 }
