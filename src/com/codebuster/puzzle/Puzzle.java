@@ -58,7 +58,7 @@ public class Puzzle {
     public static void solvePuzzle(String input) {
         if (input.equals(currentPhrase)) {
             System.out.println("Congratulations, you won!!! Collect your $5000 reward");
-            int totalWinnings = Game.currentPlayer.roundEarningsMoney;
+            int totalWinnings = Game.currentPlayer.getRoundEarningsMoney();
             totalWinnings += 5000;
             System.out.println("Your prize money is $" + totalWinnings);
             System.out.println("Your prizes ");

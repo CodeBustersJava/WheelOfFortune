@@ -1,6 +1,5 @@
 package com.codebuster.ui;
 
-import com.codebuster.enums.Category;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

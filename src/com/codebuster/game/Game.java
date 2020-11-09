@@ -4,6 +4,7 @@ import com.codebuster.enums.Category;
 import com.codebuster.player.Player;
 import com.codebuster.puzzle.Puzzle;
 import com.codebuster.ui.PuzzleBoard;
+import com.codebuster.wheel.Wheel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +13,7 @@ import java.util.Scanner;
 
 public class Game {
     private PuzzleBoard puzzleBoard;
+    Wheel wheel = Wheel.getInstance();
     Scanner scanner = new Scanner(System.in);
     public static Player currentPlayer;
     public static List<Player> players = new ArrayList<>();
@@ -19,6 +21,16 @@ public class Game {
     Player player2 = new Player("Debbie");
     Player player3 = new Player("Dustin");
     public static int indexForCurrentPlayer = 0;
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     public Game(){ }
 
@@ -30,6 +42,24 @@ public class Game {
     }
 
     private void showPlayers() {
+        if(currentPlayer == player1) {
+            System.out.print(ANSI_YELLOW);
+        }
+        System.out.print(player1.getName());
+        System.out.print(ANSI_RESET);
+        System.out.print("           ");
+        if(currentPlayer == player2){
+            System.out.print(ANSI_YELLOW);
+        }
+        System.out.print(player2.getName());
+        System.out.print(ANSI_RESET);
+        System.out.print("           ");
+        if(currentPlayer == player3){
+            System.out.print(ANSI_YELLOW);
+        }
+        System.out.print(player3.getName());
+        System.out.print(ANSI_RESET);
+        System.out.println();
     }
 
     public void startTheGame() {
@@ -49,7 +79,7 @@ public class Game {
         //gameplay loop
         while (!Puzzle.solvedPuzzle) {
             clearConsole();
-            System.out.println("Currently playing: " + currentPlayer.name);
+            System.out.println("Currently playing: " + currentPlayer.getName());
             //current player spins the wheel of fortune.
             currentPlayer.playerSpinsWheel();
             showPuzzle();

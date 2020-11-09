@@ -7,9 +7,9 @@ import org.junit.Test;
 public class PuzzleBoardTest {
     @Test
     public void createPuzzleBoardTest(){
-        PuzzleBoard puzzle = new PuzzleBoard("Author", "This is my puzzle.");
+        PuzzleBoard puzzle = new PuzzleBoard("Author", "This is my puzzle");
         String[][] puzzleArray = puzzle.getPuzzleBoard();
-        for(int j = 0; j < puzzleArray[3].length; j++) {
+        for(int j = 0; j < puzzleArray[1].length; j++) {
             System.out.println();
             for (String[] lines : puzzleArray) {
                 System.out.print(lines[j]);

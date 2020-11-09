@@ -10,12 +10,11 @@ import java.util.*;
 Aliona's Work
  */
 public class Player {
-    Player player;
-    public String name;
-    public int potentialMoney;
-    public String potentialPrize;
-    public int roundEarningsMoney = 0;
-    //int totalPrizeMoney = 0;
+    private String name;
+    private int potentialMoney;
+    private int totalEarnings;
+    private String potentialPrize;
+    private int roundEarningsMoney = 0;
     private List<String> roundEarningsPrize = new ArrayList<>();
     Wheel wheel = Wheel.getInstance();
     //boolean loseTurn = false;
@@ -121,11 +120,7 @@ public class Player {
     //ACCESSORS
 
     public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
+        return this;
     }
 
     public  int getRoundEarningsMoney() {
@@ -145,5 +140,7 @@ public class Player {
 
    }
 
-
+    public String getName() {
+        return name;
+    }
 }
