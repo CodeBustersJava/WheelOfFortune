@@ -16,8 +16,7 @@ import java.util.Scanner;
 public class Game {
     private PuzzleBoard puzzleBoard;
     Wheel wheel = Wheel.getInstance();
-    private WheelBoard wheelBoard = new WheelBoard(wheel.getWheelPrize());
-    WheelBoard moneyDisplay = new WheelBoard(wheel.getWheelPrize());
+    private WheelBoard moneyDisplay = new WheelBoard(wheel.getWheelPrize());
     Scanner scanner = new Scanner(System.in);
     public static Player currentPlayer;
     public static List<Player> players = new ArrayList<>();
@@ -136,12 +135,12 @@ public class Game {
     public void showWheel(){
         String[][] money;
         if(!wheel.isWheelOnPrize() && !wheel.isWheelOnNegative()) {
-            wheelBoard.setMoney(wheel.getMoney());
-           money = moneyDisplay.getMoneyBoard();
+            moneyDisplay.setMoney(wheel.getMoney());
+            money = moneyDisplay.getMoneyBoard();
         }else if(wheel.isWheelOnPrize()){
             money = moneyDisplay.getPrizeBoard();
         }else{
-            wheelBoard.setNegative(wheel.getNegative());
+            moneyDisplay.setNegative(wheel.getNegative());
             money = moneyDisplay.getNegative();
         }
         printMoney(money);
