@@ -7,16 +7,16 @@ import java.util.Scanner;
 public class WheelBoard {
     private final int numberHeight = 5;
     private final int letterHeight = 5;
-    private int money = 0;
+    private int money;
     private String prize = "";
     private String moneyString = String.valueOf(money);
     private String[][] moneyBoard;
     private String[][] prizeBoard;
+    private String[][] negativeBoard;
 
     public WheelBoard(String prize){
         setMoney(0);
         prizeBoard = new String[prize.length()][letterHeight];
-
         setPrize(prize);
     }
 
@@ -51,13 +51,13 @@ public class WheelBoard {
         return displayNumber;
     }
 
-    private void buildPrizeDisplay() {
+    private void buildPrizeDisplay(String prize, String[][] board) {
         for (int letter = 0; letter < prize.length(); letter++) {
             if (prize.charAt(letter) != ' ') {
-                    prizeBoard[letter] = storeLetter(prize.charAt(letter));
+                    board[letter] = storeLetter(prize.charAt(letter));
             } else {
                 for (int row = 0; row < letterHeight; row++) {
-                    prizeBoard[letter][row] = "     ";
+                    board[letter][row] = "     ";
                 }
             }
         }
@@ -76,6 +76,7 @@ public class WheelBoard {
             directory = System.getProperty("user.dir");
         }catch(Exception e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
             return new String[0];
         }
         File file = new File(directory + File.separator
@@ -85,6 +86,7 @@ public class WheelBoard {
             sc = new Scanner(file);
         }catch(FileNotFoundException e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
             return new String[0];
         }
         for(int i = 0; i < letterHeight; i++){
@@ -103,7 +105,7 @@ public class WheelBoard {
 
     public void setPrize(String prize) {
         this.prize = prize;
-        buildPrizeDisplay();
+        buildPrizeDisplay(prize, this.prizeBoard);
     }
 
     public String[][] getPrizeBoard() {
@@ -112,13 +114,21 @@ public class WheelBoard {
 
     public void setMoney(int money) {
         this.money = money;
-        setMoneyString(money);
+        setMoneyString(this.money);
     }
 
-    public void setMoneyString(int moneyString) {
-        this.moneyString = String.valueOf(this.money);
+    public void setMoneyString(int money) {
+        this.moneyString = Integer.toString(money);
         moneyBoard = new String[this.moneyString.length()+1][numberHeight];
         buildMoneyDisplay();
+    }
+
+    public void setNegative(String negative){
+        negativeBoard = new String[negative.length()][letterHeight];
+        buildPrizeDisplay(negative, this.negativeBoard);
+    }
+    public String[][] getNegative(){
+        return this.negativeBoard;
     }
 
 }
