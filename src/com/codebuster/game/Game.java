@@ -55,8 +55,29 @@ public class Game {
         System.out.print(player3.getName());
         System.out.print(Colors.ANSI_RESET);
         System.out.println();
+        System.out.println("-------------------------------------");
+        showScore();
     }
 
+    private void showScore(){
+        System.out.print(Colors.ANSI_CYAN);
+        System.out.print("$" + player1.getRoundEarningsMoney());
+        System.out.print("           ");
+        printSpaces(player1);
+        System.out.print("$" + player2.getRoundEarningsMoney());
+        System.out.print("           ");
+        printSpaces(player2);
+        System.out.print("$" + player3.getRoundEarningsMoney());
+        System.out.print("           ");
+        System.out.print(Colors.ANSI_RESET);
+        System.out.println();
+    }
+
+    private void printSpaces(Player player){
+        for(int i = 0; i < player1.getName().length()-2; i++){
+            System.out.print(" ");
+        }
+    }
     public void startTheGame() {
         //use randomPhrase() from Puzzle class to generate current puzzle.
         Puzzle puzzle = new Puzzle();
@@ -152,7 +173,11 @@ public class Game {
         for (int j = 0; j < money[1].length; j++) {
             System.out.println();
             for (String[] lines : money) {
-                System.out.print(lines[j]);
+                if(lines.length > j) {
+                    System.out.print(lines[j]);
+                }else{
+                    System.out.print("     ");
+                }
             }
         }
         System.out.print(Colors.ANSI_RESET);

@@ -10,7 +10,7 @@ public class PuzzleBoard {
     private boolean[] puzzleBoardModel;
     private String category;
     private String puzzle;
-    private final int letterHeight = 5;
+    private final int letterHeight = 3;
     public PuzzleBoard(String category, String puzzle) {
         puzzleBoard = new String[puzzle.length()][letterHeight];
         puzzleBoardModel = new boolean[puzzle.length()];

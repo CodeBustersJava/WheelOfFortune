@@ -1,4 +1,4 @@
-package com.codebuster.game.test;
+package com.codebuster.game;
 
 import com.codebuster.enums.Category;
 import com.codebuster.game.Game;

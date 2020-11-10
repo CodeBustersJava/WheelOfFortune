@@ -1,4 +1,4 @@
-package com.codebuster.ui.test;
+package com.codebuster.ui;
 
 import com.codebuster.ui.WheelBoard;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.Test;
 public class WheelBoardTest {
     @Test
     public void prizeDisplayTest(){
-        WheelBoard prizeDisplay = new WheelBoard("Trip to Nevada!,'\"");
+        WheelBoard prizeDisplay = new WheelBoard("Trip to Nevada!,'");
         String[][] prize = prizeDisplay.getPrizeBoard();
         printMoney(prize);
     }
@@ -27,7 +27,11 @@ public class WheelBoardTest {
         for (int j = 0; j < money[1].length; j++) {
             System.out.println();
             for (String[] lines : money) {
-                System.out.print(lines[j]);
+                if(lines.length > j) {
+                    System.out.print(lines[j]);
+                }else{
+                    System.out.print("     ");
+                }
             }
         }
     }

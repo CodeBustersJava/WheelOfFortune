@@ -1,4 +1,4 @@
-package com.codebuster.ui.test;
+package com.codebuster.ui;
 
 import com.codebuster.enums.Category;
 import com.codebuster.ui.PuzzleBoard;
@@ -23,13 +23,13 @@ public class PuzzleBoardTest {
 //                System.out.print(lines[j]);
 //            }
 //        }
-        PuzzleBoard puzzle3 = new PuzzleBoard("Author", "__nnie");
+        PuzzleBoard puzzle3 = new PuzzleBoard("Author", "_____EE_");
         String[][] puzzleArray3 = puzzle3.getPuzzleBoard();
-        for(int j = 0; j < puzzleArray3[3].length; j++) {
-            System.out.println();
+        for(int j = 0; j < 3; j++) {
             for (String[] lines : puzzleArray3) {
                 System.out.print(lines[j]);
             }
+            System.out.println();
         }
         puzzle3.updatePuzzle("Bonnie");
         String[][] puzzleArray4 = puzzle3.getPuzzleBoard();
