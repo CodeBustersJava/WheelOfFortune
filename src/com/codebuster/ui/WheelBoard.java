@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class WheelBoard {
-    private final int numberHeight = 5;
-    private final int letterHeight = 5;
+    private final int numberHeight = 4;
+    private final int letterHeight = 3;
     private int money;
     private String prize = "";
     private String moneyString = String.valueOf(money);
@@ -119,7 +119,7 @@ public class WheelBoard {
 
     public void setMoneyString(int money) {
         this.moneyString = Integer.toString(money);
-        moneyBoard = new String[this.moneyString.length()+1][numberHeight];
+        moneyBoard = new String[moneyString.length()+1][numberHeight];
         buildMoneyDisplay();
     }
 
