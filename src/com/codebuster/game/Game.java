@@ -1,9 +1,11 @@
 package com.codebuster.game;
 
 import com.codebuster.enums.Category;
+import com.codebuster.enums.Colors;
 import com.codebuster.player.Player;
 import com.codebuster.puzzle.Puzzle;
 import com.codebuster.ui.PuzzleBoard;
+import com.codebuster.ui.WheelBoard;
 import com.codebuster.wheel.Wheel;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.Scanner;
 public class Game {
     private PuzzleBoard puzzleBoard;
     Wheel wheel = Wheel.getInstance();
+    private WheelBoard wheelBoard = new WheelBoard(wheel.getWheelPrize());
+    WheelBoard moneyDisplay = new WheelBoard(wheel.getWheelPrize());
     Scanner scanner = new Scanner(System.in);
     public static Player currentPlayer;
     public static List<Player> players = new ArrayList<>();
@@ -22,17 +26,9 @@ public class Game {
     Player player3 = new Player("Dustin");
     public static int indexForCurrentPlayer = 0;
 
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
-
-    public Game(){ }
+    public Game(){
+        moneyDisplay.setMoney(wheel.getMoney());
+    }
 
     public void start(){
         clearConsole();
@@ -43,22 +39,22 @@ public class Game {
 
     private void showPlayers() {
         if(currentPlayer == player1) {
-            System.out.print(ANSI_YELLOW);
+            System.out.print(Colors.ANSI_YELLOW);
         }
         System.out.print(player1.getName());
-        System.out.print(ANSI_RESET);
+        System.out.print(Colors.ANSI_RESET);
         System.out.print("           ");
         if(currentPlayer == player2){
-            System.out.print(ANSI_YELLOW);
+            System.out.print(Colors.ANSI_YELLOW);
         }
         System.out.print(player2.getName());
-        System.out.print(ANSI_RESET);
+        System.out.print(Colors.ANSI_RESET);
         System.out.print("           ");
         if(currentPlayer == player3){
-            System.out.print(ANSI_YELLOW);
+            System.out.print(Colors.ANSI_YELLOW);
         }
         System.out.print(player3.getName());
-        System.out.print(ANSI_RESET);
+        System.out.print(Colors.ANSI_RESET);
         System.out.println();
     }
 
@@ -84,6 +80,7 @@ public class Game {
             currentPlayer.playerSpinsWheel();
             showPuzzle();
             showCategory();
+            showWheel();
             System.out.println();
             showPlayers();
             guess();
@@ -134,6 +131,32 @@ public class Game {
     public void showCategory(){
         System.out.println();
         System.out.println("Category: " + puzzleBoard.getCategory());
+    }
+
+    public void showWheel(){
+        String[][] money;
+        if(!wheel.isWheelOnPrize() && !wheel.isWheelOnNegative()) {
+            wheelBoard.setMoney(wheel.getMoney());
+           money = moneyDisplay.getMoneyBoard();
+        }else if(wheel.isWheelOnPrize()){
+            money = moneyDisplay.getPrizeBoard();
+        }else{
+            wheelBoard.setNegative(wheel.getNegative());
+            money = moneyDisplay.getNegative();
+        }
+        printMoney(money);
+        System.out.println();
+    }
+
+    private void printMoney(String[][] money) {
+        System.out.print(Colors.ANSI_GREEN);
+        for (int j = 0; j < money[1].length; j++) {
+            System.out.println();
+            for (String[] lines : money) {
+                System.out.print(lines[j]);
+            }
+        }
+        System.out.print(Colors.ANSI_RESET);
     }
 
     public static void clearConsole() {
