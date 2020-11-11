@@ -36,11 +36,6 @@ public class Game {
         startTheGame();
     }
 
-    private void showPlayers(Player player1, Player player2, Player player3, Player currentPlayer) {
-        display.showPlayers(player1, player2, player3, currentPlayer);
-        display.showScore(player1, player2, player3);
-    }
-
     public void startTheGame() {
         puzzle.randomPhrase();
         puzzleBoard = new PuzzleBoard(puzzle.getCurrentCategory(), puzzle.showPuzzle());
@@ -59,17 +54,16 @@ public class Game {
             puzzleBoard.updatePuzzle(puzzle.showPuzzle());
             currentPlayer.playerSpinsWheel();
             display.clearConsole();
-            System.out.println("Round Money Earned: $" + currentPlayer.getRoundEarningsMoney());
             System.out.println("Prizes Earned: ");
             currentPlayer.getRoundEarningsPrize();
             //current player spins the wheel of fortune.
             display.showPuzzle(puzzleBoard);
             display.showCategory(puzzleBoard);
-            display.showWheel(wheel, moneyDisplay);
+            display.showWheel(wheel);
             System.out.println();
             display.showPlayers(player1, player2, player3, currentPlayer);
             display.showScore(player1, player2, player3);
-            System.out.println("Puzzle Category: " + puzzle.getCurrentCategory());
+            display.showTotalScore(player1, player2, player3);
             System.out.println("Wrong letter collection: " + puzzle.getGuessedWrongLetters());
             System.out.print("Puzzle: ");
             puzzle.showPuzzle();

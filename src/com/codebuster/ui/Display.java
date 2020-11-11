@@ -43,6 +43,20 @@ public class Display {
         System.out.println();
     }
 
+    public void showTotalScore(Player player1, Player player2, Player player3){
+        System.out.print(Colors.ANSI_PURPLE);
+        System.out.print("$" + player1.getTotalPrizeMoney());
+        System.out.print("           ");
+        printSpaces(player1);
+        System.out.print("$" + player2.getTotalPrizeMoney());
+        System.out.print("           ");
+        printSpaces(player2);
+        System.out.print("$" + player3.getTotalPrizeMoney());
+        System.out.print("           ");
+        System.out.print(Colors.ANSI_RESET);
+        System.out.println();
+    }
+
     public void printSpaces(Player player){
         for(int i = 0; i < player.getName().length()-2; i++){
             System.out.print(" ");
@@ -50,8 +64,25 @@ public class Display {
     }
 
     public void showCategory(PuzzleBoard puzzleBoard){
-        System.out.println();
+        System.out.print(Colors.ANSI_WHITE_BG);
+        System.out.print(Colors.ANSI_BLACK);
         System.out.println("Category: " + puzzleBoard.getCategory());
+        System.out.println(Colors.ANSI_RESET);
+    }
+
+    public void showWheel(Wheel wheel){
+        System.out.print(Colors.ANSI_BLUE);
+        System.out.println();
+        System.out.print("Wheel value: $");
+        if(!wheel.isWheelOnPrize() && !wheel.isWheelOnNegative()) {
+            System.out.println(wheel.getMoney());
+        }else if(wheel.isWheelOnPrize()){
+            System.out.println(wheel.getWheelPrize());
+        }else{
+            System.out.println(wheel.getNegative());
+        }
+        System.out.println();
+        System.out.print(Colors.ANSI_RESET);
     }
 
     public void showWheel(Wheel wheel, WheelBoard moneyDisplay){
@@ -107,6 +138,7 @@ public class Display {
                 System.out.print(lines[j]);
             }
         }
+        System.out.println();
     }
 
     public static Display getInstance(){
