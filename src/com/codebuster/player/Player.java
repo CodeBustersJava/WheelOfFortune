@@ -10,14 +10,13 @@ import java.util.*;
 Aliona's work starts...
  */
 public class Player {
-    Player player;
-    public String name;
-    public  int potentialMoney;
-    public String potentialPrize ="";
+    private String name;
+    public int potentialMoney;
+    public String potentialPrize = "";
     private int totalPrizeMoney = 0;
-    private Set<String> roundEarningsPrize = new HashSet<>();
-    Wheel wheel = Wheel.getInstance();
-    Scanner scanner = new Scanner(System.in);
+    private final Set<String> roundEarningsPrize = new HashSet<>();
+    private final Wheel wheel = Wheel.getInstance();
+    private final Scanner scanner = new Scanner(System.in);
 
     //CONSTRUCTOR
     public Player(String name) {
@@ -26,8 +25,8 @@ public class Player {
 
     //METHODS
     public void playerSpinsWheel() {
-        potentialMoney=0;
-        potentialPrize ="";
+        potentialMoney = 0;
+        potentialPrize = "";
         //gets Dustin's Wheel method which spins the wheel of choices:
         // empty, lose turn, bankruptcy, money, and prizes.
         String result = wheel.spinWheel();
@@ -62,45 +61,45 @@ public class Player {
         //checking is happening in Puzzle class from consonants list.
         System.out.println("Please enter a consonant: ");
         String input = scanner.nextLine().toUpperCase();
-        if (Puzzle.consonants.contains(input)){
+        if (Puzzle.consonants.contains(input)) {
             checkIfRight(input);
-    }else {
+        } else {
             //when player chooses not a consonant they lose a turn as penalty.
             System.out.println(input + " is not a consonant!");
             System.out.println("Penalty for freeloading: LOSE A TURN");
             Game.getTheNextPlayer();
+        }
     }
-}
 
     public void checkIfRight(String consonant) {
-            //player guesses again if the consonant chosen is already revealed on the board.
-            if(Puzzle.guessedRightLetters.contains(consonant)){
-                System.out.println("This letter is already on the board");
-                Game.guess();
-            }else {
-                if (Puzzle.currentPhrase.contains(consonant)) {
-                    System.out.println("You guessed right, reveal the consonant: " + consonant);
-                    //player guesses right:
-                    //potential earnings turn into actual earnings money/prize (print both).
-                    totalPrizeMoney = potentialMoney + totalPrizeMoney;
-                    if(!potentialPrize.equals("")) {
-                        roundEarningsPrize.add(potentialPrize);
-                    }
-                    //update the board with the guessed right consonant.
-                    Puzzle.guessedRightLetters.add(consonant.charAt(0));
-                    Puzzle.showPuzzle();
-                } else {
-                    //player guesses wrong:
-                    //potential money earnings = 0.
-                    //guessed wrong letters are added to the guessedWrongLetters set.
-                    //player loses turn.
-                    System.out.println("Guessed wrong!");
-                    potentialMoney = 0;
-                    Puzzle.guessedWrongLetters.add(consonant.charAt(0));
-                    System.out.println(Puzzle.guessedWrongLetters);
-                    Game.getTheNextPlayer();
+        //player guesses again if the consonant chosen is already revealed on the board.
+        if (Puzzle.guessedRightLetters.contains(consonant)) {
+            System.out.println("This letter is already on the board");
+            Game.guess();
+        } else {
+            if (Puzzle.currentPhrase.contains(consonant)) {
+                System.out.println("You guessed right, reveal the consonant: " + consonant);
+                //player guesses right:
+                //potential earnings turn into actual earnings money/prize (print both).
+                totalPrizeMoney = potentialMoney + totalPrizeMoney;
+                if (!potentialPrize.equals("")) {
+                    roundEarningsPrize.add(potentialPrize);
                 }
+                //update the board with the guessed right consonant.
+                Puzzle.guessedRightLetters.add(consonant.charAt(0));
+                Puzzle.showPuzzle();
+            } else {
+                //player guesses wrong:
+                //potential money earnings = 0.
+                //guessed wrong letters are added to the guessedWrongLetters set.
+                //player loses turn.
+                System.out.println("Guessed wrong!");
+                potentialMoney = 0;
+                Puzzle.guessedWrongLetters.add(consonant.charAt(0));
+                System.out.println(Puzzle.guessedWrongLetters);
+                Game.getTheNextPlayer();
             }
+        }
     }
 
     public void buyVowel() {
@@ -109,46 +108,45 @@ public class Player {
         if (getTotalPrizeMoney() >= 250) {
             System.out.print("Enter a vowel: ");
             String input = scanner.nextLine().toUpperCase();
-            totalPrizeMoney = totalPrizeMoney -250;
+            totalPrizeMoney = totalPrizeMoney - 250;
             //check if player entered a vowel.
             if (Puzzle.vowels.contains(input)) {
                 checkIfRight(input);
+            } else {
+                System.out.println(input + " is not a vowel!");
+                System.out.println("Penalty for freeloading: LOSE A TURN!");
+                Game.getTheNextPlayer();
             }
-            else {
-            System.out.println(input + " is not a vowel!");
-            System.out.println("Penalty for freeloading: LOSE A TURN!");
-            Game.getTheNextPlayer();
-        }
-    }   //player does not have enough money to buy a vowel
+        }   //player does not have enough money to buy a vowel
         //player needs to choose a consonant instead.
-        else{
-        System.out.println("You do not have enough money to buy a vowel.");
-        Game.currentPlayer.requestConsonant();
-    }
+        else {
+            System.out.println("You do not have enough money to buy a vowel.");
+            Game.currentPlayer.requestConsonant();
+        }
     }
 
     //ACCESSORS
-    public void setPlayer(Player player) {
-        this.player = player;
+    public String getName() {
+        return name;
     }
 
     public void getRoundEarningsPrize() {
-        if (this.roundEarningsPrize.size() ==0){
+        if (this.roundEarningsPrize.size() == 0) {
             System.out.println("No prizes won.");
         }
-         for(String prize : this.roundEarningsPrize){
-             if(prize != null){
-                 System.out.println(prize);
-             }
+        for (String prize : this.roundEarningsPrize) {
+            if (prize != null) {
+                System.out.println(prize);
+            }
         }
-   }
+    }
 
-    public  int getTotalPrizeMoney() {
+    public int getTotalPrizeMoney() {
         return this.totalPrizeMoney;
     }
 
     public void setTotalPrizeMoney(int totalPrizeMoney) {
-       this.totalPrizeMoney = totalPrizeMoney;
+        this.totalPrizeMoney = totalPrizeMoney;
     }
 
 }

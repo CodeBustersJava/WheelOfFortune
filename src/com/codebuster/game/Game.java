@@ -2,10 +2,9 @@ package com.codebuster.game;
 
 import com.codebuster.player.Player;
 import com.codebuster.puzzle.Puzzle;
-
 import java.util.*;
 
-//.....starts Aliona's work.
+//Aliona's work starts...
 public class Game {
     private static Scanner scanner = new Scanner(System.in);
     public static Player currentPlayer;
@@ -31,7 +30,7 @@ public class Game {
 
         //gameplay loop
         while (!Puzzle.solvedPuzzle) {
-            System.out.println("Currently playing: " + currentPlayer.name);
+            System.out.println("Currently playing: " + currentPlayer.getName());
             System.out.println("Round Money Earned: $" + currentPlayer.getTotalPrizeMoney());
             System.out.println("Prizes Earned: ");
             currentPlayer.getRoundEarningsPrize();
@@ -76,6 +75,7 @@ public class Game {
             System.out.println("Invalid input. Please choose option 1,2, or 3.");
         }
     }
+
     //repeat game as many times as the user chooses through promp input.
     public static void playAgain() {
         System.out.println("Would you like to play another round? Enter [1] for yes or [2] for no to quit: ");
@@ -111,7 +111,7 @@ public class Game {
             //iterate through winners.
             //get winners' names and total money earned.
             for (Player player : winners) {
-                System.out.println(player.name);
+                System.out.println(player.getName());
             }
             System.out.println("With: $" + winner.getTotalPrizeMoney());
         }

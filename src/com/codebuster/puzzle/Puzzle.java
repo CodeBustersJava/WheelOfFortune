@@ -15,9 +15,9 @@ public class Puzzle {
     public static Set<Character> guessedWrongLetters = new HashSet<>();
     public static List<String> consonants = Arrays.asList("B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z", "Y");
     public static List<String> vowels = Arrays.asList("A", "E", "I", "O", "U");
-    List<String> Occupation = Arrays.asList("DOCTOR", "TEACHER", "DOG WALKER", "SOFTWARE DEVELOPER", "MUSICIAN", "FILM PRODUCER");
-    List<String> Quotations = Arrays.asList("IT IS RAINING CATS AND DOGS", "HASTA LA VISTA BABY", "A PARTY WITHOUT CAKE IS JUST A MEETING", "TALK IS CHEAP SHOW ME THE CODE");
-    List<String> Amazon_Leadership_Principles = Arrays.asList("DIVE DEEP", "CUSTOMER OBSESSION", "ARE RIGHT A LOT", "OWNERSHIP", "LEARN AND BE CURIUOS", "THINK BIG", "INSIST ON HIGHEST STANDARDS",
+    private final List<String> Occupation = Arrays.asList("DOCTOR", "TEACHER", "DOG WALKER", "SOFTWARE DEVELOPER", "MUSICIAN", "FILM PRODUCER");
+    private final List<String> Quotations = Arrays.asList("IT IS RAINING CATS AND DOGS", "HASTA LA VISTA BABY", "A PARTY WITHOUT CAKE IS JUST A MEETING", "TALK IS CHEAP SHOW ME THE CODE");
+    private final List<String> Amazon_Leadership_Principles = Arrays.asList("DIVE DEEP", "CUSTOMER OBSESSION", "ARE RIGHT A LOT", "OWNERSHIP", "LEARN AND BE CURIUOS", "THINK BIG", "INSIST ON HIGHEST STANDARDS",
             "INVENT AND SIMPLIFY", "HIRE AND DEVELOP THE BEST", "BIAS FOR ACTION", "EARN TRUST", "FRUGALITY", "HAVE BACKBONE DISAGREE AND COMMIT", "DELIVER RESULTS");
     List<String> Categories = Arrays.asList("Occupation", "Quotations", "Amazon Leadership Principles");
 
@@ -67,14 +67,14 @@ public class Puzzle {
         //entire puzzle solved by player inputting the correct phrase.
         //player who solved the puzzle gets additional $5000 plus initial earnings money/prize.
         if (input.equals(currentPhrase)) {
-            System.out.println("Congratulations " + Game.currentPlayer.name + ", you won!!! Collect your additional $5000 reward");
+            System.out.println("Congratulations " + Game.currentPlayer.getName() + ", you won!!! Collect your additional $5000 reward");
             Game.currentPlayer.setTotalPrizeMoney(Game.currentPlayer.getTotalPrizeMoney() + Game.currentPlayer.potentialMoney + 5000);
             System.out.println("Winner's total prizes: ");
             Game.currentPlayer.getRoundEarningsPrize();
             //total money of all players.
-            System.out.println(Game.player1.name + " earned: $" + Game.player1.getTotalPrizeMoney());
-            System.out.println(Game.player2.name + " earned: $" + Game.player2.getTotalPrizeMoney());
-            System.out.println(Game.player3.name + " earned: $" + Game.player3.getTotalPrizeMoney());
+            System.out.println(Game.player1.getName() + " earned: $" + Game.player1.getTotalPrizeMoney());
+            System.out.println(Game.player2.getName() + " earned: $" + Game.player2.getTotalPrizeMoney());
+            System.out.println(Game.player3.getName() + " earned: $" + Game.player3.getTotalPrizeMoney());
 
             solvedPuzzle = true;
         } else {
