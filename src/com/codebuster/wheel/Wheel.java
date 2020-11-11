@@ -12,7 +12,7 @@ public class Wheel {
     private int prizeValue;
     private int negativesLength = NegativeConsequence.values().length;
     private int moneyLength = Money.values().length;
-    private int money;
+    private static int money;
     private String negative;
     private boolean wheelOnPrize;
     private boolean wheelOnNegative;
