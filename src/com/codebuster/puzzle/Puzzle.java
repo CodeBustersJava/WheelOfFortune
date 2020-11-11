@@ -57,10 +57,8 @@ public class Puzzle {
         for (char letter : puzzle) {
             if (guessedRightLetters.contains(letter)) {
                 currentPuzzle.append(letter);
-                currentPuzzle.append(letter);
                 thePhrase++;
             } else if (letter == ' ') {
-                currentPuzzle.append(" ");
                 currentPuzzle.append(" ");
                 thePhrase++;
             } else {
