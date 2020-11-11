@@ -82,7 +82,7 @@ public class Puzzle {
             System.out.println("Your prize money is $" + totalWinnings);
             System.out.println("Your prizes ");
             System.out.println("Congratulations " + game.getCurrentPlayer().getName() + ", you won!!! Collect your additional $5000 reward");
-            game.getCurrentPlayer().setTotalPrizeMoney(game.getCurrentPlayer().getTotalPrizeMoney() + game.getCurrentPlayer().getPotentialMoney() + 5000);
+            game.getCurrentPlayer().setTotalPrizeMoney();
             System.out.println("Winner's total prizes: ");
             game.getCurrentPlayer().getRoundEarningsPrize();
             //total money of all players.

@@ -47,7 +47,8 @@ public class Player {
         }
         //if BANKRUPTCY money = 0 and print
         else if (result.equals("BANKRUPTCY")) {
-            setTotalPrizeMoney(0);
+            setRoundEarningsMoney(-1*getRoundEarningsMoney());
+            game.getTheNextPlayer();
         }
         //check if the award is money or prize
         else if (result.matches("[0-9]+")) {
@@ -82,33 +83,11 @@ public class Player {
             game.guess();
         } else {
             if (puzzle.getCurrentPhrase().contains(consonant)) {
-                System.out.println("You guessed right, reveal the consonant: " + consonant);
-                //player guesses right:
-                //potential earnings turn into actual earnings money/prize (print both).
-                totalPrizeMoney = potentialMoney + totalPrizeMoney;
-                if (!potentialPrize.equals("")) {
-                    roundEarningsPrize.add(potentialPrize);
-                }
-                //update the board with the guessed right consonant.
-                puzzle.setGuessedRightLetters(consonant.charAt(0));
-                puzzle.showPuzzle();
-            } else {
-                //player guesses wrong:
-                //potential money earnings = 0.
-                //guessed wrong letters are added to the guessedWrongLetters set.
-                //player loses turn.
-                System.out.println("Guessed wrong!");
-                potentialMoney = 0;
-                puzzle.setGuessedWrongLetters(consonant.charAt(0));
-                System.out.println(puzzle.getGuessedWrongLetters());
-                game.getTheNextPlayer();
-            }
-            if (puzzle.getCurrentPhrase().contains(consonant)) {
                 System.out.println("Guessed right, reveal the consonant: " + consonant);
                 //after player guesses right:
                 // potential earnings turn into actual earnings money/prize (print both).
-                roundEarningsMoney = potentialMoney + roundEarningsMoney;
-                System.out.println("Money Earned: $" + roundEarningsMoney);
+                setRoundEarningsMoney(potentialMoney );
+                System.out.println("Money Earned: $" + getRoundEarningsMoney());
                 roundEarningsPrize.add(potentialPrize);
                 System.out.println("Prizes Earned: ");
                 getRoundEarningsPrize();
@@ -125,10 +104,10 @@ public class Player {
     public void buyVowel(Puzzle puzzle) {
         //check if player has enough money to buy a vowel worth $250.
         //player buys a vowel their total money is decreased by $250.
-        if (getTotalPrizeMoney() >= 250) {
+        if (getRoundEarningsMoney() >= 250) {
             System.out.print("Enter a vowel: ");
             String input = scanner.nextLine().toUpperCase();
-            totalPrizeMoney = totalPrizeMoney - 250;
+            setRoundEarningsMoney(-250);
             //check if player entered a vowel.
             if (puzzle.vowels.contains(input)) {
                 checkIfRight(input, puzzle);
@@ -157,7 +136,7 @@ public class Player {
     }
 
     public void setRoundEarningsMoney(int roundEarningsMoney) {
-        this.roundEarningsMoney = roundEarningsMoney;
+        this.roundEarningsMoney = this.roundEarningsMoney + roundEarningsMoney;
     }
         public String getName() {
         return name;
@@ -178,8 +157,9 @@ public class Player {
         return this.totalPrizeMoney;
     }
 
-    public void setTotalPrizeMoney(int totalPrizeMoney) {
-        this.totalPrizeMoney = totalPrizeMoney;
+    public void setTotalPrizeMoney() {
+        this.totalPrizeMoney = this.totalPrizeMoney + getRoundEarningsMoney() + 5000;
+        setRoundEarningsMoney(-1*getRoundEarningsMoney());
     }
 
     public int getPotentialMoney() {

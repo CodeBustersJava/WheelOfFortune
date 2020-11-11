@@ -56,29 +56,27 @@ public class Game {
 
         //gameplay loop
         while (!puzzle.isSolvedPuzzle()) {
-            System.out.println("Currently playing: " + currentPlayer.getName());
-            System.out.println("Round Money Earned: $" + currentPlayer.getTotalPrizeMoney());
+            puzzleBoard.updatePuzzle(puzzle.showPuzzle());
+            currentPlayer.playerSpinsWheel();
+            display.clearConsole();
+            System.out.println("Round Money Earned: $" + currentPlayer.getRoundEarningsMoney());
             System.out.println("Prizes Earned: ");
             currentPlayer.getRoundEarningsPrize();
-            display.clearConsole();
-            System.out.println("Currently playing: " + currentPlayer.getName());
             //current player spins the wheel of fortune.
-            currentPlayer.playerSpinsWheel();
             display.showPuzzle(puzzleBoard);
             display.showCategory(puzzleBoard);
             display.showWheel(wheel, moneyDisplay);
             System.out.println();
             display.showPlayers(player1, player2, player3, currentPlayer);
+            display.showScore(player1, player2, player3);
             System.out.println("Puzzle Category: " + puzzle.getCurrentCategory());
             System.out.println("Wrong letter collection: " + puzzle.getGuessedWrongLetters());
             System.out.print("Puzzle: ");
             puzzle.showPuzzle();
             guess();
-            puzzleBoard.updatePuzzle(puzzle.showPuzzle());
         }
         playAgain();
     }
-
 
     //first player is 0 second 1 and third 2.
     public void getTheNextPlayer() {
@@ -86,8 +84,10 @@ public class Game {
             indexForCurrentPlayer = 0;
         } else {
             indexForCurrentPlayer++;
+
         }
         currentPlayer = players.get(indexForCurrentPlayer);
+        currentPlayer.playerSpinsWheel();
         System.out.println();
     }
 
