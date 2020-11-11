@@ -21,4 +21,8 @@ public class Colors {
     public static final String ANSI_CYAN_BG = "\u001B[46m";
     public static final String ANSI_WHITE_BG = "\u001B[47m";
 
+    public static final String ANSI_FLASHING = "\u001B[5m";
+    public static final String ANSI_UNDERLINE = "\u001B[4m";
+    public static final String ANSI_DIMMER = "\u001B[2m";
+
 }
