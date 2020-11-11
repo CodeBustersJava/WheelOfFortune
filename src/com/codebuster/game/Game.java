@@ -45,6 +45,7 @@ public class Game {
         puzzle.randomPhrase();
         puzzleBoard = new PuzzleBoard(puzzle.getCurrentCategory(), puzzle.showPuzzle());
         System.out.println(puzzle.getCurrentPhrase());
+        puzzle.showPuzzle();
         //add all players to the players list and shuffle them to have a random order.
         players.add(player1);
         players.add(player2);
