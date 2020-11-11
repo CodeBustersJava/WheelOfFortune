@@ -66,23 +66,26 @@ public class Display {
     public void showCategory(PuzzleBoard puzzleBoard){
         System.out.print(Colors.ANSI_WHITE_BG);
         System.out.print(Colors.ANSI_BLACK);
-        System.out.println("Category: " + puzzleBoard.getCategory());
+        System.out.print("Category: " + puzzleBoard.getCategory());
         System.out.println(Colors.ANSI_RESET);
+        System.out.println();
     }
 
     public void showWheel(Wheel wheel){
         System.out.print(Colors.ANSI_BLUE);
-        System.out.println();
         System.out.print("Wheel value: $");
+        System.out.print(Colors.ANSI_UNDERLINE);
+        System.out.print(Colors.ANSI_DIMMER);
         if(!wheel.isWheelOnPrize() && !wheel.isWheelOnNegative()) {
-            System.out.println(wheel.getMoney());
+            System.out.print(wheel.getMoney());
         }else if(wheel.isWheelOnPrize()){
-            System.out.println(wheel.getWheelPrize());
+            System.out.print(wheel.getWheelPrize());
         }else{
-            System.out.println(wheel.getNegative());
+            System.out.print(wheel.getNegative());
         }
-        System.out.println();
         System.out.print(Colors.ANSI_RESET);
+        System.out.println();
+
     }
 
     public void showWheel(Wheel wheel, WheelBoard moneyDisplay){
