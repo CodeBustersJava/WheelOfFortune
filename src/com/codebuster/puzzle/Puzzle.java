@@ -51,7 +51,6 @@ public class Puzzle {
     public String showPuzzle() {
         char[] puzzle = currentPhrase.toCharArray();
         int thePhrase = 0;
-        //iterate through each letter in the puzzle.
         StringBuilder currentPuzzle = new StringBuilder();
         //iterate through each letter in puzzle
         for (char letter : puzzle) {
@@ -76,13 +75,8 @@ public class Puzzle {
         //entire puzzle solved by player inputting the correct phrase.
         //player who solved the puzzle gets additional $5000 plus initial earnings money/prize.
         if (input.equals(currentPhrase)) {
-            System.out.println("Congratulations, you won!!! Collect your $5000 reward");
-            int totalWinnings = game.getCurrentPlayer().getRoundEarningsMoney();
-            totalWinnings += 5000;
-            System.out.println("Your prize money is $" + totalWinnings);
-            System.out.println("Your prizes ");
             System.out.println("Congratulations " + game.getCurrentPlayer().getName() + ", you won!!! Collect your additional $5000 reward");
-            game.getCurrentPlayer().setTotalPrizeMoney();
+            game.getCurrentPlayer().setTotalPrizeMoney(game.getCurrentPlayer().getTotalPrizeMoney() + game.getCurrentPlayer().getPotentialMoney() + 5000);
             System.out.println("Winner's total prizes: ");
             game.getCurrentPlayer().getRoundEarningsPrize();
             //total money of all players.
@@ -115,10 +109,6 @@ public class Puzzle {
 
     public Set<Character> getGuessedWrongLetters() {
         return guessedWrongLetters;
-    }
-
-    public void setGuessedWrongLetters(char character) {
-        this.guessedWrongLetters.add(character);
     }
 
     public List<Character> getGuessedRightLetters() {

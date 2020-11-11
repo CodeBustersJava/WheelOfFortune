@@ -40,11 +40,13 @@ public class Player {
         }
         //if LOSE_TURN get the next player to play and print out the player's name whose turn it is.
         else if (result.equals("LOSE_TURN")) {
+            System.out.println("You lose a turn");
             game.getTheNextPlayer();
+            System.out.println("Currently playing: " + game.getCurrentPlayer().name);
         }
         //if BANKRUPTCY money = 0 and print
         else if (result.equals("BANKRUPTCY")) {
-            setRoundEarningsMoney(-1*getRoundEarningsMoney());
+            setTotalPrizeMoney(0);
             game.getTheNextPlayer();
         }
         //check if the award is money or prize
@@ -54,7 +56,7 @@ public class Player {
         } else {
             //else potentialPrize
             potentialPrize = result;
-            potentialMoney = wheel.getPrizeValue();
+            //potentialMoney = wheel.getPrizeValue();
         }
     }
 
@@ -83,16 +85,26 @@ public class Player {
                 System.out.println("Guessed right, reveal the consonant: " + consonant);
                 //after player guesses right:
                 // potential earnings turn into actual earnings money/prize (print both).
-                setRoundEarningsMoney(potentialMoney );
-                System.out.println("Money Earned: $" + getRoundEarningsMoney());
-                roundEarningsPrize.add(potentialPrize);
-                System.out.println("Prizes Earned: ");
-                getRoundEarningsPrize();
+                totalPrizeMoney = potentialMoney + totalPrizeMoney;
+                if (!potentialPrize.equals("")){
+                    roundEarningsPrize.add(potentialPrize);
+                }
+                //update the board with the guessed right consonant
+                //System.out.println("Money Earned: $" + getRoundEarningsMoney());
+               // roundEarningsPrize.add(potentialPrize);
+                //System.out.println("Prizes Earned: ");
+                //getRoundEarningsPrize();
                 puzzle.setGuessedRightLetters(consonant.charAt(0));
                 puzzle.showPuzzle();
             } else {
+                //player guesses wrong:
+                //potential money earnings = 0.
+                //guessed wrong letters are added to the guessedWrongLetters set.
+                //player loses turn.
                 System.out.println("Guessed wrong!");
                 potentialMoney = 0;
+                puzzle.getGuessedWrongLetters().add(consonant.charAt(0));
+                System.out.println(puzzle.getGuessedWrongLetters());
                 game.getTheNextPlayer();
             }
         }
@@ -154,9 +166,10 @@ public class Player {
         return this.totalPrizeMoney;
     }
 
-    public void setTotalPrizeMoney() {
-        this.totalPrizeMoney = this.totalPrizeMoney + getRoundEarningsMoney() + 5000;
-        setRoundEarningsMoney(-1*getRoundEarningsMoney());
+    public void setTotalPrizeMoney(int totalPrizeMoney) {
+//        this.totalPrizeMoney = this.totalPrizeMoney + getRoundEarningsMoney() + 5000;
+//        setRoundEarningsMoney(-1*getRoundEarningsMoney());
+        this.totalPrizeMoney = totalPrizeMoney;
     }
 
     public int getPotentialMoney() {
