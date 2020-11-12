@@ -10,16 +10,23 @@ public class SplashScreen {
     private int letterHeight = 6;
     private String[] splashBoard;
 
-    public SplashScreen(){
+    public SplashScreen() {
         splashBoard = storeScreen();
     }
+
     public void printScreen() {
         int count = 10;
-        while(count > 0){
+        while (count > 0) {
             System.out.print(Colors.randomColor());
-            for(String line : splashBoard){
-            System.out.println(line);
+            for (String line : splashBoard) {
+                System.out.println(line);
             }
+            try {
+                Thread.sleep(750);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
             count--;
         }
         System.out.print(Colors.ANSI_RESET);
@@ -28,9 +35,9 @@ public class SplashScreen {
     private String[] storeScreen() {
         String[] displayLetter = new String[letterHeight];
         String directory;
-        try{
+        try {
             directory = System.getProperty("user.dir");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             return new String[0];
@@ -40,12 +47,12 @@ public class SplashScreen {
         Scanner sc;
         try {
             sc = new Scanner(file);
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             return new String[0];
         }
-        for(int i = 0; i < letterHeight; i++){
+        for (int i = 0; i < letterHeight; i++) {
             displayLetter[i] = sc.nextLine();
         }
         return displayLetter;

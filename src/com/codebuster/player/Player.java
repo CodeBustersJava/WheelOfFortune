@@ -42,7 +42,7 @@ public class Player {
         else if (result.equals("LOSE_TURN")) {
             System.out.println("You lose a turn");
             try {
-                wait(2000);
+                Thread.sleep(2000);
             }catch(Exception ignored){ }
             System.out.println(game.getCurrentPlayer().getName() + " loses a turn!");
             game.getTheNextPlayer();
