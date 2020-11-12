@@ -115,7 +115,7 @@ public class Game {
     public void playAgain() {
         System.out.println("Would you like to play another round? " +
                 "Enter [1] for yes or " +
-                "Enter [2] for no to quit: ");
+                "Enter [any key] for no to quit: ");
         String playAnotherRound = scanner.nextLine();
         //clear puzzle and guessed wrong letters.
         if (playAnotherRound.equals("1")) {
