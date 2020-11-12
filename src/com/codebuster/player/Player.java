@@ -41,8 +41,10 @@ public class Player {
         //if LOSE_TURN get the next player to play and print out the player's name whose turn it is.
         else if (result.equals("LOSE_TURN")) {
             System.out.println("You lose a turn");
+            try {
+                wait(2000);
+            }catch(Exception ignored){ }
             game.getTheNextPlayer();
-            System.out.println("Currently playing: " + game.getCurrentPlayer().name);
         }
         //if BANKRUPTCY money = 0 and print
         else if (result.equals("BANKRUPTCY")) {

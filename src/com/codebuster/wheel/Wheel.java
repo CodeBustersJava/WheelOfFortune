@@ -12,7 +12,7 @@ public class Wheel {
     private int prizeValue;
     private int negativesLength = NegativeConsequence.values().length;
     private int moneyLength = Money.values().length;
-    private static int money;
+    private int money;
     private String negative;
     private boolean wheelOnPrize;
     private boolean wheelOnNegative;
@@ -69,7 +69,8 @@ public class Wheel {
     }
 
     public static Wheel getInstance(){
-        return instance != null ? instance : new Wheel();
+        instance = instance == null ? new Wheel() : instance;
+        return instance;
     }
 
 }

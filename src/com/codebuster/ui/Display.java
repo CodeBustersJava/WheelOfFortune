@@ -33,10 +33,10 @@ public class Display {
         System.out.print(Colors.ANSI_CYAN);
         System.out.print("$" + player1.getRoundEarningsMoney());
         System.out.print("           ");
-        printSpaces(player1);
+        printSpaces(player1, "0");
         System.out.print("$" + player2.getRoundEarningsMoney());
         System.out.print("           ");
-        printSpaces(player2);
+        printSpaces(player2, "0");
         System.out.print("$" + player3.getRoundEarningsMoney());
         System.out.print("           ");
         System.out.print(Colors.ANSI_RESET);
@@ -44,21 +44,24 @@ public class Display {
     }
 
     public void showTotalScore(Player player1, Player player2, Player player3){
-        System.out.print(Colors.ANSI_PURPLE);
-        System.out.print("$" + player1.getTotalPrizeMoney());
+        System.out.print(Colors.ANSI_GREEN);
+        String prizeMoney1 = "$" + player1.getTotalPrizeMoney();
+        System.out.print(prizeMoney1);
         System.out.print("           ");
-        printSpaces(player1);
-        System.out.print("$" + player2.getTotalPrizeMoney());
+        printSpaces(player1, prizeMoney1);
+        String prizeMoney2 = "$" + player2.getTotalPrizeMoney();
+        System.out.print(prizeMoney2);
         System.out.print("           ");
-        printSpaces(player2);
-        System.out.print("$" + player3.getTotalPrizeMoney());
+        printSpaces(player2, prizeMoney2);
+        String prizeMoney3 = "$" + player3.getTotalPrizeMoney();
+        System.out.print(prizeMoney3);
         System.out.print("           ");
         System.out.print(Colors.ANSI_RESET);
         System.out.println();
     }
 
-    public void printSpaces(Player player){
-        for(int i = 0; i < player.getName().length()-2; i++){
+    public void printSpaces(Player player, String prizeMoney){
+        for(int i = 0; i < player.getName().length()-prizeMoney.length(); i++){
             System.out.print(" ");
         }
     }
