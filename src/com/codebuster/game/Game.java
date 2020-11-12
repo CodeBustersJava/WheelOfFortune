@@ -64,7 +64,6 @@ public class Game {
             display.showWheel(wheel);
             System.out.println();
             display.showPlayers(player1, player2, player3, currentPlayer);
-            display.showScore(player1, player2, player3);
             display.showTotalScore(player1, player2, player3);
             System.out.println("Wrong letter collection: " + puzzle.getGuessedWrongLetters());
             System.out.print("Puzzle: ");
@@ -83,7 +82,6 @@ public class Game {
         }
         currentPlayer = players.get(indexForCurrentPlayer);
         currentPlayer.playerSpinsWheel();
-        System.out.println();
     }
 
     public void guess() {

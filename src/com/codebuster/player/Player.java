@@ -40,6 +40,10 @@ public class Player {
         }
         //if LOSE_TURN get the next player to play and print out the player's name whose turn it is.
         else if (result.equals("LOSE_TURN")) {
+            System.out.println("You lose a turn");
+            try {
+                wait(2000);
+            }catch(Exception ignored){ }
             System.out.println(game.getCurrentPlayer().getName() + " loses a turn!");
             game.getTheNextPlayer();
         }
