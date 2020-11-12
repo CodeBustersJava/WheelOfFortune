@@ -53,6 +53,8 @@ public class Game {
         while (!puzzle.isSolvedPuzzle()) {
             puzzleBoard.updatePuzzle(puzzle.showPuzzle());
             currentPlayer.playerSpinsWheel();
+            System.out.println("Currently playing: " + getCurrentPlayer().getName());
+            System.out.println("right letters: "+puzzle.getGuessedRightLetters());
             display.clearConsole();
             System.out.print("Prizes Earned: ");
             currentPlayer.getRoundEarningsPrize();
@@ -78,7 +80,6 @@ public class Game {
             indexForCurrentPlayer = 0;
         } else {
             indexForCurrentPlayer++;
-
         }
         currentPlayer = players.get(indexForCurrentPlayer);
         currentPlayer.playerSpinsWheel();
