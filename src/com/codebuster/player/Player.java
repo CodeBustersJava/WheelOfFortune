@@ -7,7 +7,7 @@ import com.codebuster.wheel.Wheel;
 import java.util.*;
 
 /*
-Aliona's work starts...
+Aliona's work starts (excluding display and wheel)...
  */
 public class Player {
     private String name;
