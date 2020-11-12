@@ -1,7 +1,5 @@
 package com.codebuster.ui;
 
-import com.codebuster.enums.Colors;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -15,9 +13,9 @@ public class Title {
     }
 
     public void printTitle() {
-            for (String line : titleBoard) {
-                System.out.println(line);
-            }
+        for (String line : titleBoard) {
+            System.out.println(line);
+        }
     }
 
     private String[] storeTitle() {

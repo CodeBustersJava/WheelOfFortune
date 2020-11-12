@@ -9,7 +9,6 @@ import java.util.Random;
 public class Wheel {
     private static Wheel instance = null;
     private Prize wheelPrize;
-    private int prizeValue;
     private int negativesLength = NegativeConsequence.values().length;
     private int moneyLength = Money.values().length;
     private int money;
@@ -19,7 +18,6 @@ public class Wheel {
 
     private Wheel(){
         wheelPrize = Prize.randomPrize();
-        prizeValue = Prize.prizeValue();
         spinWheel();
     }
 
@@ -42,10 +40,6 @@ public class Wheel {
             this.negative = NegativeConsequence.values()[wheelSelection - 1 - moneyLength].toString();
             return this.negative;
         }
-    }
-
-    public int getPrizeValue() {
-        return prizeValue;
     }
 
     public String getWheelPrize() {
