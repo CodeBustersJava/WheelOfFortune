@@ -1,3 +1,5 @@
+package com.codebuster.client;
+
 import com.codebuster.game.Game;
 
 public class WheelOfFortune {
