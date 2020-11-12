@@ -1,6 +1,8 @@
 package com.codebuster.puzzle;
 
 import com.codebuster.game.Game;
+import com.codebuster.player.Player;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -80,10 +82,12 @@ public class Puzzle {
             System.out.println("Winner's total prizes: ");
             game.getCurrentPlayer().getRoundEarningsPrize();
             //total money of all players.
-            System.out.println(game.getPlayer1().getName() + " earned: $" + game.getPlayer1().getTotalPrizeMoney());
-            System.out.println(game.getPlayer2().getName() + " earned: $" + game.getPlayer2().getTotalPrizeMoney());
-            System.out.println(game.getPlayer3().getName() + " earned: $" + game.getPlayer3().getTotalPrizeMoney());
-
+            System.out.print(game.getPlayer1().getName() + " earned: $" + game.getPlayer1().getTotalPrizeMoney() + ", prizes earned: ");
+            game.getPlayer1().getRoundEarningsPrize();
+            System.out.print(game.getPlayer2().getName() + " earned: $" + game.getPlayer2().getTotalPrizeMoney()+ ", prizes earned: ");
+            game.getPlayer2().getRoundEarningsPrize();
+            System.out.print(game.getPlayer3().getName() + " earned: $" + game.getPlayer3().getTotalPrizeMoney()+ ", prizes earned: ");
+            game.getPlayer3().getRoundEarningsPrize();
             solvedPuzzle = true;
         } else {
             //player loses turn when guesses the wrong phrase.

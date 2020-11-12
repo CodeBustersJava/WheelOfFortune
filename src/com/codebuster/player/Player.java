@@ -67,14 +67,14 @@ public class Player {
     public void requestConsonant(Puzzle puzzle) {
         //player requests consonant through input. check if the input is right.
         //checking is happening in Puzzle class from consonants list.
-        System.out.println("Please enter only one consonant: ");
+        System.out.print("Please enter only one consonant: ");
         String input = scanner.nextLine().toUpperCase();
         if (puzzle.consonants.contains(input)) {
             checkIfRight(input, puzzle);
         } else {
             //when player chooses not a consonant they lose a turn as penalty.
             System.out.println(input + " is not a consonant!");
-            System.out.println("Penalty for freeloading: You lose a turn!");
+            System.out.println("Penalty for not paying attention: " + game.getCurrentPlayer().name + " loses a turn!");
             game.getTheNextPlayer();
         }
     }
@@ -101,6 +101,7 @@ public class Player {
                 //getRoundEarningsPrize();
                 puzzle.setGuessedRightLetters(letter.charAt(0));
                 puzzle.showPuzzle();
+                System.out.println();
             } else {
                 //player guesses wrong:
                 //potential money earnings = 0.
@@ -138,19 +139,9 @@ public class Player {
         }
     }
 
-
     //ACCESSORS
-
-    public Player getPlayer() {
-        return this;
-    }
-
     public int getRoundEarningsMoney() {
         return roundEarningsMoney;
-    }
-
-    public void setRoundEarningsMoney(int roundEarningsMoney) {
-        this.roundEarningsMoney = this.roundEarningsMoney + roundEarningsMoney;
     }
         public String getName() {
         return name;
@@ -158,7 +149,7 @@ public class Player {
 
     public void getRoundEarningsPrize() {
         if (this.roundEarningsPrize.size() == 0) {
-            System.out.println("No prizes won.");
+            System.out.println("None.");
         }
         for (String prize : this.roundEarningsPrize) {
             if (prize != null) {
