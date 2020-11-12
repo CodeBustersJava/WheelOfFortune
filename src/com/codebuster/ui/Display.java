@@ -77,8 +77,6 @@ public class Display {
     public void showWheel(Wheel wheel){
         System.out.print(Colors.ANSI_BLUE);
         System.out.print("Wheel value: $");
-        System.out.print(Colors.ANSI_UNDERLINE);
-        System.out.print(Colors.ANSI_DIMMER);
         if(!wheel.isWheelOnPrize() && !wheel.isWheelOnNegative()) {
             System.out.print(wheel.getMoney());
         }else if(wheel.isWheelOnPrize()){
@@ -148,6 +146,7 @@ public class Display {
     }
 
     public static Display getInstance(){
-        return instance != null ? instance : new Display();
+        instance = instance != null ? instance : new Display();
+        return instance;
     }
 }

@@ -4,6 +4,7 @@ import com.codebuster.player.Player;
 import com.codebuster.puzzle.Puzzle;
 import com.codebuster.ui.Display;
 import com.codebuster.ui.PuzzleBoard;
+import com.codebuster.ui.SplashScreen;
 import com.codebuster.ui.WheelBoard;
 import com.codebuster.wheel.Wheel;
 import java.util.*;
@@ -32,6 +33,9 @@ public class Game {
     }
 
     public void start(){
+        display.clearConsole();
+        SplashScreen splash = new SplashScreen();
+        splash.printScreen();
         display.clearConsole();
         startTheGame();
     }
