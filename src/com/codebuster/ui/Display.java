@@ -148,6 +148,7 @@ public class Display {
     }
 
     public static Display getInstance(){
-        return instance != null ? instance : new Display();
+        instance = instance != null ? instance : new Display();
+        return instance;
     }
 }
