@@ -55,10 +55,11 @@ public class Game {
 
         //gameplay loop
         while (!puzzle.isSolvedPuzzle()) {
+            display.clearConsole();
+            display.showTitle();
             puzzleBoard.updatePuzzle(puzzle.showPuzzle());
             currentPlayer.playerSpinsWheel();
             System.out.println("Currently playing: " + getCurrentPlayer().getName());
-            display.clearConsole();
             System.out.print("Prizes Earned: ");
             currentPlayer.getRoundEarningsPrize();
             //current player spins the wheel of fortune.

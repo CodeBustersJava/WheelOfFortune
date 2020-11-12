@@ -6,6 +6,7 @@ import com.codebuster.wheel.Wheel;
 
 public class Display {
     private static Display instance;
+    private Title title = new Title();
 
     private Display() {
     }
@@ -137,6 +138,12 @@ public class Display {
             }
         }
         System.out.println();
+    }
+
+    public void showTitle() {
+        System.out.println(Colors.ANSI_BLUE);
+        title.printTitle();
+        System.out.println(Colors.ANSI_RESET);
     }
 
     public static Display getInstance() {

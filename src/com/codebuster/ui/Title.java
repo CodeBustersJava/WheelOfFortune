@@ -6,33 +6,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class SplashScreen {
-    private int letterHeight = 15;
-    private String[] splashBoard;
+public class Title {
+    private int letterHeight = 9;
+    private String[] titleBoard;
 
-    public SplashScreen() {
-        splashBoard = storeScreen();
+    public Title() {
+        titleBoard = storeTitle();
     }
 
-    public void printScreen() {
-        int count = 5;
-        while (count > 0) {
-            System.out.print(Colors.randomColor());
-            for (String line : splashBoard) {
+    public void printTitle() {
+            for (String line : titleBoard) {
                 System.out.println(line);
             }
-            try {
-                Thread.sleep(750);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-
-            count--;
-        }
-        System.out.print(Colors.ANSI_RESET);
     }
 
-    private String[] storeScreen() {
+    private String[] storeTitle() {
         String[] displayLetter = new String[letterHeight];
         String directory;
         try {
@@ -43,7 +31,7 @@ public class SplashScreen {
             return new String[0];
         }
         File file = new File(directory + File.separator
-                + "Letters" + File.separator + "splashscreen.txt");
+                + "Letters" + File.separator + "title.txt");
         Scanner sc;
         try {
             sc = new Scanner(file);
