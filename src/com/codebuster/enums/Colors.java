@@ -28,8 +28,7 @@ public class Colors {
     public static final String ANSI_DIMMER = "\u001B[2m";
 
     public static String randomColor(){
-        String[] colors = {ANSI_BLACK, ANSI_BLUE, ANSI_CYAN, ANSI_CYAN_BG,ANSI_BLACK_BG,
-                ANSI_FLASHING, ANSI_GREEN, ANSI_GREEN_BG, ANSI_WHITE, ANSI_WHITE_BG};
+        String[] colors = {ANSI_BLACK, ANSI_BLUE, ANSI_CYAN, ANSI_GREEN, ANSI_WHITE, ANSI_RED, ANSI_PURPLE};
         Random random = new Random();
         int upperBound = colors.length;
         int colorSelection = random.nextInt(upperBound);

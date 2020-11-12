@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class SplashScreen {
-    private int letterHeight = 6;
+    private int letterHeight = 15;
     private String[] splashBoard;
 
     public SplashScreen() {
