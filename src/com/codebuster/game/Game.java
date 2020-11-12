@@ -148,7 +148,7 @@ public class Game {
             //iterate through winners.
             //get winners' names and total money earned.
             for (Player player : winners) {
-                System.out.println(player.getName());
+                System.out.println(player.getName() + "!!!");
             }
             System.out.println("With: $" + winner.getTotalPrizeMoney());
         }

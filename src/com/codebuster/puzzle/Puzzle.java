@@ -80,9 +80,10 @@ public class Puzzle {
         //entire puzzle solved by player inputting the correct phrase.
         //player who solved the puzzle gets additional $5000 plus initial earnings money/prize.
         if (input.equals(currentPhrase)) {
+            System.out.println();
             System.out.println("Congratulations " + game.getCurrentPlayer().getName() + ", you won!!! Collect your additional $5000 reward");
             game.getCurrentPlayer().setTotalPrizeMoney(game.getCurrentPlayer().getTotalPrizeMoney() + game.getCurrentPlayer().getPotentialMoney() + 5000);
-            System.out.println("Winner's total prizes: ");
+            System.out.print("Winner's total prizes: ");
             game.getCurrentPlayer().getRoundEarningsPrize();
             //total money of all players.
             System.out.print(game.getPlayer1().getName() + " earned: $" + game.getPlayer1().getTotalPrizeMoney() + ", prizes earned: ");
@@ -91,6 +92,7 @@ public class Puzzle {
             game.getPlayer2().getRoundEarningsPrize();
             System.out.print(game.getPlayer3().getName() + " earned: $" + game.getPlayer3().getTotalPrizeMoney() + ", prizes earned: ");
             game.getPlayer3().getRoundEarningsPrize();
+            System.out.println();
             solvedPuzzle = true;
         } else {
             //player loses turn when guesses the wrong phrase.
