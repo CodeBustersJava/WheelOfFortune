@@ -29,7 +29,7 @@ public class PuzzleBoard {
                 }
             } else {
                 for (int row = 0; row < letterHeight; row++) {
-                        puzzleBoard[letter][row] = "     ";
+                        puzzleBoard[letter][row] = "   ";
                 }
             }
         }
