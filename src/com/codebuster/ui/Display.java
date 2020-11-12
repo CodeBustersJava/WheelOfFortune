@@ -141,7 +141,6 @@ public class Display {
     }
 
     public void showTitle() {
-        //System.out.println(Colors.ANSI_BLACK_BG);
         System.out.println(Colors.ANSI_BLUE);
         title.printTitle();
         System.out.println("-------------------------------------------------------------------------------------------------------------------------------------------------");

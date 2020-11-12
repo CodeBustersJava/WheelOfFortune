@@ -3,11 +3,10 @@ package com.codebuster.player;
 import com.codebuster.game.Game;
 import com.codebuster.puzzle.Puzzle;
 import com.codebuster.wheel.Wheel;
-
 import java.util.*;
 
 /*
-Aliona's work starts (excluding display and wheel)...
+Aliona's work starts (excluding wheel)...
  */
 public class Player {
     private String name;
@@ -31,7 +30,7 @@ public class Player {
         potentialMoney = 0;
         potentialPrize = "";
         //gets Dustin's Wheel method which spins the wheel of choices:
-        // empty, lose turn, bankruptcy, money, and prizes.
+        // no reward, lose turn, bankruptcy, money, and prizes.
         String result = wheel.spinWheel();
 
         //if empty "" print empty.
@@ -43,7 +42,8 @@ public class Player {
             System.out.println("You lose a turn");
             try {
                 Thread.sleep(2000);
-            }catch(Exception ignored){ }
+            } catch (Exception ignored) {
+            }
             System.out.println(game.getCurrentPlayer().getName() + " loses a turn!");
             game.getTheNextPlayer();
         }
@@ -53,7 +53,8 @@ public class Player {
             System.out.println(game.getCurrentPlayer().getName() + " got bankruptcy and loses a turn!");
             try {
                 Thread.sleep(2000);
-            }catch(Exception ignored){ }
+            } catch (Exception ignored) {
+            }
             game.getTheNextPlayer();
         }
         //check if the award is money or prize
@@ -61,9 +62,8 @@ public class Player {
             //store result in a temporary variable 'potentialMoney'.
             potentialMoney = Integer.parseInt(result);
         } else {
-            //else potentialPrize
+            //result choice is prize.
             potentialPrize = result;
-            //potentialMoney = wheel.getPrizeValue();
         }
     }
 
@@ -92,16 +92,12 @@ public class Player {
             if (puzzle.getCurrentPhrase().contains(letter)) {
                 System.out.println("Guessed right, reveal the letter: " + letter);
                 //after player guesses right:
-                // potential earnings turn into actual earnings money/prize (print both).
+                // potential earnings turn into actual earnings money/prize.
                 totalPrizeMoney = potentialMoney + totalPrizeMoney;
-                if (!potentialPrize.equals("")){
+                if (!potentialPrize.equals("")) {
                     roundEarningsPrize.add(potentialPrize);
                 }
                 //update the board with the guessed right consonant
-                //System.out.println("Money Earned: $" + getRoundEarningsMoney());
-               // roundEarningsPrize.add(potentialPrize);
-                //System.out.println("Prizes Earned: ");
-                //getRoundEarningsPrize();
                 puzzle.setGuessedRightLetters(letter.charAt(0));
                 puzzle.showPuzzle();
                 System.out.println();
@@ -125,7 +121,7 @@ public class Player {
         if (getTotalPrizeMoney() >= 250) {
             System.out.print("Enter a vowel: ");
             String input = scanner.nextLine().toUpperCase();
-            setTotalPrizeMoney(getTotalPrizeMoney()-250);
+            setTotalPrizeMoney(getTotalPrizeMoney() - 250);
             //check if player entered a vowel.
             if (puzzle.vowels.contains(input)) {
                 checkIfRight(input, puzzle);
@@ -146,7 +142,8 @@ public class Player {
     public int getRoundEarningsMoney() {
         return roundEarningsMoney;
     }
-        public String getName() {
+
+    public String getName() {
         return name;
     }
 

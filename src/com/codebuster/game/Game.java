@@ -9,7 +9,7 @@ import com.codebuster.ui.WheelBoard;
 import com.codebuster.wheel.Wheel;
 import java.util.*;
 
-//Aliona's work starts...
+//Aliona's work (excluding wheel and display) starts...
 public class Game {
     private PuzzleBoard puzzleBoard;
     private Display display = Display.getInstance();
@@ -24,7 +24,8 @@ public class Game {
     Puzzle puzzle;
     public static int indexForCurrentPlayer = 0;
 
-    public Game(){
+    //METHODS
+    public Game() {
         moneyDisplay.setMoney(wheel.getMoney());
         player1 = new Player("Aliona", this);
         player2 = new Player("Debbie", this);
@@ -32,7 +33,7 @@ public class Game {
         puzzle = new Puzzle(this);
     }
 
-    public void start(){
+    public void start() {
         display.clearConsole();
         SplashScreen splash = new SplashScreen();
         splash.printScreen();
@@ -41,6 +42,7 @@ public class Game {
     }
 
     public void startTheGame() {
+        //use Puzzle class to generate current phrase that is chosen from shuffled category.
         puzzle.randomPhrase();
         puzzleBoard = new PuzzleBoard(puzzle.getCurrentCategory(), puzzle.showPuzzle());
         System.out.println(puzzle.getCurrentPhrase());
@@ -58,11 +60,11 @@ public class Game {
             display.clearConsole();
             display.showTitle();
             puzzleBoard.updatePuzzle(puzzle.showPuzzle());
+            //current player spins the wheel of fortune.
             currentPlayer.playerSpinsWheel();
             System.out.println("Currently playing: " + getCurrentPlayer().getName());
             System.out.print("Prizes Earned: ");
             currentPlayer.getRoundEarningsPrize();
-            //current player spins the wheel of fortune.
             display.showPuzzle(puzzleBoard);
             display.showCategory(puzzleBoard);
             display.showWheel(wheel);
@@ -73,7 +75,7 @@ public class Game {
             System.out.print("Puzzle: ");
             puzzle.showPuzzle();
             guess();
-        }
+        }//play again() executed after puzzle is solved.
         playAgain();
     }
 
@@ -89,6 +91,7 @@ public class Game {
     }
 
     public void guess() {
+        //promp player to choose options to request a letter or solve puzzle.
         System.out.println("Please choose your option:\n " +
                 "Enter [1] to request a free consonant, \n " +
                 "Enter [2] to buy a vowel for $250, \n " +
@@ -110,7 +113,9 @@ public class Game {
 
     //repeat game as many times as the user chooses through promp input.
     public void playAgain() {
-        System.out.println("Would you like to play another round? Enter [1] for yes or [2] for no to quit: ");
+        System.out.println("Would you like to play another round? " +
+                "Enter [1] for yes or " +
+                "Enter [2] for no to quit: ");
         String playAnotherRound = scanner.nextLine();
         //clear puzzle and guessed wrong letters.
         if (playAnotherRound.equals("1")) {

@@ -1,13 +1,10 @@
 package com.codebuster.puzzle;
 
 import com.codebuster.game.Game;
-import com.codebuster.player.Player;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import java.util.*;
 
 /*
@@ -22,13 +19,15 @@ public class Puzzle {
     public final List<String> consonants = Arrays.asList("B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z", "Y");
     public final List<String> vowels = Arrays.asList("A", "E", "I", "O", "U");
     private final List<String> Occupation = Arrays.asList("DOCTOR", "TEACHER", "DOG WALKER", "SOFTWARE DEVELOPER", "MUSICIAN", "FILM PRODUCER");
-    private final List<String> Quotations = Arrays.asList("IT IS RAINING CATS AND DOGS", "HASTA LA VISTA BABY", "A PARTY WITHOUT CAKE IS JUST A MEETING", "TALK IS CHEAP SHOW ME THE CODE");
+    private final List<String> Endangered_Animals = Arrays.asList("SAVANNA ELEPHANT", "SUMATRAN RHINO", "SNOW LEOPARD", "GREAT WHITE SHARK", "GIANT PANDA", "RED PANDA", "MOUNTAIN GORILLA");
+    private final List<String> Quotations = Arrays.asList("IT IS RAINING CATS AND DOGS", "HASTA LA VISTA BABY", "TALK IS CHEAP SHOW ME THE CODE");
     private final List<String> Amazon_Leadership_Principles = Arrays.asList("DIVE DEEP", "CUSTOMER OBSESSION", "ARE RIGHT A LOT", "OWNERSHIP", "LEARN AND BE CURIUOS", "THINK BIG", "INSIST ON HIGHEST STANDARDS",
             "INVENT AND SIMPLIFY", "HIRE AND DEVELOP THE BEST", "BIAS FOR ACTION", "EARN TRUST", "FRUGALITY", "HAVE BACKBONE DISAGREE AND COMMIT", "DELIVER RESULTS");
-    private List<String> Categories = Arrays.asList("Occupation", "Quotations", "Amazon Leadership Principles");
+    private List<String> Categories = Arrays.asList("Occupation", "Quotations", "Amazon Leadership Principles", "Endangered Animals");
+
     private Game game;
 
-    public Puzzle(Game game){
+    public Puzzle(Game game) {
         this.game = game;
     }
 
@@ -36,7 +35,7 @@ public class Puzzle {
         //shuffle and get the first category.
         Collections.shuffle(Categories);
         currentCategory = Categories.get(0);
-
+        //shuffle the phrases and get the first phrase.
         if (currentCategory.equalsIgnoreCase("Occupation")) {
             Collections.shuffle(Occupation);
             currentPhrase = Occupation.get(0);
@@ -46,9 +45,13 @@ public class Puzzle {
         } else if (currentCategory.equalsIgnoreCase("Amazon Leadership Principles")) {
             Collections.shuffle(Amazon_Leadership_Principles);
             currentPhrase = Amazon_Leadership_Principles.get(0);
+        } else if (currentCategory.equalsIgnoreCase("Endangered Animals")) {
+            Collections.shuffle(Endangered_Animals);
+            currentPhrase = Endangered_Animals.get(0);
         }
         return currentPhrase;
     }
+
 
     public String showPuzzle() {
         char[] puzzle = currentPhrase.toCharArray();
@@ -84,9 +87,9 @@ public class Puzzle {
             //total money of all players.
             System.out.print(game.getPlayer1().getName() + " earned: $" + game.getPlayer1().getTotalPrizeMoney() + ", prizes earned: ");
             game.getPlayer1().getRoundEarningsPrize();
-            System.out.print(game.getPlayer2().getName() + " earned: $" + game.getPlayer2().getTotalPrizeMoney()+ ", prizes earned: ");
+            System.out.print(game.getPlayer2().getName() + " earned: $" + game.getPlayer2().getTotalPrizeMoney() + ", prizes earned: ");
             game.getPlayer2().getRoundEarningsPrize();
-            System.out.print(game.getPlayer3().getName() + " earned: $" + game.getPlayer3().getTotalPrizeMoney()+ ", prizes earned: ");
+            System.out.print(game.getPlayer3().getName() + " earned: $" + game.getPlayer3().getTotalPrizeMoney() + ", prizes earned: ");
             game.getPlayer3().getRoundEarningsPrize();
             solvedPuzzle = true;
         } else {
@@ -95,6 +98,7 @@ public class Puzzle {
             game.getTheNextPlayer();
         }
     }
+
     public String getCurrentPhrase() {
         return currentPhrase;
     }
