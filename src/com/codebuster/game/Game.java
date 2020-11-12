@@ -45,7 +45,7 @@ public class Game {
         //use Puzzle class to generate current phrase that is chosen from shuffled category.
         puzzle.randomPhrase();
         puzzleBoard = new PuzzleBoard(puzzle.getCurrentCategory(), puzzle.showPuzzle());
-        System.out.println(puzzle.getCurrentPhrase());
+        //System.out.println(puzzle.getCurrentPhrase()); //reveals the puzzle phrase for testing
         puzzle.showPuzzle();
         //add all players to the players list and shuffle them to have a random order.
         players.add(player1);

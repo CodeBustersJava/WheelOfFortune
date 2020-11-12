@@ -4,6 +4,7 @@ import com.codebuster.enums.Colors;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URLDecoder;
 import java.util.Scanner;
 
 public class SplashScreen {
@@ -44,6 +45,7 @@ public class SplashScreen {
         }
         File file = new File(directory + File.separator
                 + "Letters" + File.separator + "splashscreen.txt");
+
         Scanner sc;
         try {
             sc = new Scanner(file);
