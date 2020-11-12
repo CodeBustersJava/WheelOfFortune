@@ -44,11 +44,13 @@ public class Player {
             try {
                 wait(2000);
             }catch(Exception ignored){ }
+            System.out.println(game.getCurrentPlayer().getName() + " loses a turn!");
             game.getTheNextPlayer();
         }
         //if BANKRUPTCY money = 0 and print
         else if (result.equals("BANKRUPTCY")) {
             setTotalPrizeMoney(0);
+            System.out.println(game.getCurrentPlayer().getName() + " got bankruptcy and loses a turn!");
             game.getTheNextPlayer();
         }
         //check if the award is money or prize
@@ -77,14 +79,15 @@ public class Player {
         }
     }
 
-    public void checkIfRight(String consonant, Puzzle puzzle) {
+    public void checkIfRight(String letter, Puzzle puzzle) {
         //player guesses again if the consonant chosen is already revealed on the board.
-        if (puzzle.getGuessedRightLetters().contains(consonant)) {
+        char letterChar = letter.charAt(0);
+        if (puzzle.getGuessedRightLetters().contains(letterChar)) {
             System.out.println("This letter is already on the board");
             game.guess();
         } else {
-            if (puzzle.getCurrentPhrase().contains(consonant)) {
-                System.out.println("Guessed right, reveal the consonant: " + consonant);
+            if (puzzle.getCurrentPhrase().contains(letter)) {
+                System.out.println("Guessed right, reveal the letter: " + letter);
                 //after player guesses right:
                 // potential earnings turn into actual earnings money/prize (print both).
                 totalPrizeMoney = potentialMoney + totalPrizeMoney;
@@ -96,7 +99,7 @@ public class Player {
                // roundEarningsPrize.add(potentialPrize);
                 //System.out.println("Prizes Earned: ");
                 //getRoundEarningsPrize();
-                puzzle.setGuessedRightLetters(consonant.charAt(0));
+                puzzle.setGuessedRightLetters(letter.charAt(0));
                 puzzle.showPuzzle();
             } else {
                 //player guesses wrong:
@@ -105,7 +108,7 @@ public class Player {
                 //player loses turn.
                 System.out.println("Guessed wrong!");
                 potentialMoney = 0;
-                puzzle.getGuessedWrongLetters().add(consonant.charAt(0));
+                puzzle.getGuessedWrongLetters().add(letter.charAt(0));
                 System.out.println(puzzle.getGuessedWrongLetters());
                 game.getTheNextPlayer();
             }

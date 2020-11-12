@@ -120,7 +120,7 @@ public class Puzzle {
     }
 
     public void clearGuessedWrongLetters() {
-        this.guessedRightLetters.clear();
+        this.guessedWrongLetters.clear();
     }
 
     public void clearGuessedRightLetters() {
