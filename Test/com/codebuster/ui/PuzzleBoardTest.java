@@ -1,7 +1,5 @@
 package com.codebuster.ui;
 
-import com.codebuster.enums.Category;
-import com.codebuster.ui.PuzzleBoard;
 import org.junit.Test;
 
 public class PuzzleBoardTest {

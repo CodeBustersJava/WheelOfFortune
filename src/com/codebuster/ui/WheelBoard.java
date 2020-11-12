@@ -14,7 +14,7 @@ public class WheelBoard {
     private String[][] prizeBoard;
     private String[][] negativeBoard;
 
-    public WheelBoard(String prize){
+    public WheelBoard(String prize) {
         setMoney(0);
         prizeBoard = new String[prize.length()][letterHeight];
         setPrize(prize);
@@ -23,16 +23,16 @@ public class WheelBoard {
     private void buildMoneyDisplay() {
         moneyBoard[0] = storeLetter('$');
         for (int number = 0; number < moneyString.length(); number++) {
-            moneyBoard[number+1] = storeNumber(moneyString.charAt(number));
+            moneyBoard[number + 1] = storeNumber(moneyString.charAt(number));
         }
     }
 
     private String[] storeNumber(char number) {
         String[] displayNumber = new String[numberHeight];
         String directory;
-        try{
+        try {
             directory = System.getProperty("user.dir");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return new String[0];
         }
@@ -41,11 +41,11 @@ public class WheelBoard {
         Scanner sc;
         try {
             sc = new Scanner(file);
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             return new String[0];
         }
-        for(int i = 0; i < numberHeight; i++){
+        for (int i = 0; i < numberHeight; i++) {
             displayNumber[i] = sc.nextLine();
         }
         return displayNumber;
@@ -54,7 +54,7 @@ public class WheelBoard {
     private void buildPrizeDisplay(String prize, String[][] board) {
         for (int letter = 0; letter < prize.length(); letter++) {
             if (prize.charAt(letter) != ' ') {
-                    board[letter] = storeLetter(prize.charAt(letter));
+                board[letter] = storeLetter(prize.charAt(letter));
             } else {
                 for (int row = 0; row < letterHeight; row++) {
                     board[letter][row] = "     ";
@@ -66,15 +66,15 @@ public class WheelBoard {
     private String[] storeLetter(char letter) {
         String[] displayLetter = new String[letterHeight];
         String letterString;
-        if(letter == '_'){
+        if (letter == '_') {
             letterString = "BLANK";
-        }else{
+        } else {
             letterString = String.valueOf(letter).toUpperCase();
         }
         String directory;
-        try{
+        try {
             directory = System.getProperty("user.dir");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             return new String[0];
@@ -84,12 +84,12 @@ public class WheelBoard {
         Scanner sc;
         try {
             sc = new Scanner(file);
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
             return new String[0];
         }
-        for(int i = 0; i < letterHeight; i++){
+        for (int i = 0; i < letterHeight; i++) {
             displayLetter[i] = sc.nextLine();
         }
         return displayLetter;
@@ -119,15 +119,16 @@ public class WheelBoard {
 
     public void setMoneyString(int money) {
         this.moneyString = Integer.toString(money);
-        moneyBoard = new String[moneyString.length()+1][numberHeight];
+        moneyBoard = new String[moneyString.length() + 1][numberHeight];
         buildMoneyDisplay();
     }
 
-    public void setNegative(String negative){
+    public void setNegative(String negative) {
         negativeBoard = new String[negative.length()][letterHeight];
         buildPrizeDisplay(negative, this.negativeBoard);
     }
-    public String[][] getNegative(){
+
+    public String[][] getNegative() {
         return this.negativeBoard;
     }
 

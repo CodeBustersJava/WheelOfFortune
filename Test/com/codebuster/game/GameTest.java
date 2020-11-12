@@ -1,7 +1,5 @@
 package com.codebuster.game;
 
-import com.codebuster.enums.Category;
-import com.codebuster.game.Game;
 import org.junit.Before;
 import org.junit.Test;
 
