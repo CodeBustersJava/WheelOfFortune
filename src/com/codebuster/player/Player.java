@@ -113,10 +113,10 @@ public class Player {
     public void buyVowel(Puzzle puzzle) {
         //check if player has enough money to buy a vowel worth $250.
         //player buys a vowel their total money is decreased by $250.
-        if (getRoundEarningsMoney() >= 250) {
+        if (getTotalPrizeMoney() >= 250) {
             System.out.print("Enter a vowel: ");
             String input = scanner.nextLine().toUpperCase();
-            setRoundEarningsMoney(-250);
+            setTotalPrizeMoney(getTotalPrizeMoney()-250);
             //check if player entered a vowel.
             if (puzzle.vowels.contains(input)) {
                 checkIfRight(input, puzzle);
@@ -167,8 +167,6 @@ public class Player {
     }
 
     public void setTotalPrizeMoney(int totalPrizeMoney) {
-//        this.totalPrizeMoney = this.totalPrizeMoney + getRoundEarningsMoney() + 5000;
-//        setRoundEarningsMoney(-1*getRoundEarningsMoney());
         this.totalPrizeMoney = totalPrizeMoney;
     }
 

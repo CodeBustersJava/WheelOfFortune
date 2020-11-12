@@ -54,7 +54,7 @@ public class Game {
             puzzleBoard.updatePuzzle(puzzle.showPuzzle());
             currentPlayer.playerSpinsWheel();
             display.clearConsole();
-            System.out.println("Prizes Earned: ");
+            System.out.print("Prizes Earned: ");
             currentPlayer.getRoundEarningsPrize();
             //current player spins the wheel of fortune.
             display.showPuzzle(puzzleBoard);
