@@ -58,7 +58,6 @@ public class Game {
             puzzleBoard.updatePuzzle(puzzle.showPuzzle());
             currentPlayer.playerSpinsWheel();
             System.out.println("Currently playing: " + getCurrentPlayer().getName());
-            System.out.println("right letters: "+puzzle.getGuessedRightLetters());
             display.clearConsole();
             System.out.print("Prizes Earned: ");
             currentPlayer.getRoundEarningsPrize();
