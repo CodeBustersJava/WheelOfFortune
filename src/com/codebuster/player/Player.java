@@ -162,4 +162,8 @@ public class Player {
     public int getPotentialMoney() {
         return potentialMoney;
     }
+
+    public String getPotentialPrize() {
+        return potentialPrize;
+    }
 }

@@ -23,6 +23,8 @@ public class Game {
     Puzzle puzzle;
     public static int indexForCurrentPlayer = 0;
 
+    private boolean gameOn = true;
+
     public Game(){
         moneyDisplay.setMoney(wheel.getMoney());
         player1 = new Player("Aliona", this);
@@ -50,7 +52,7 @@ public class Game {
         currentPlayer = players.get(indexForCurrentPlayer);
 
         //gameplay loop
-        while (!puzzle.isSolvedPuzzle()) {
+        while (!puzzle.isSolvedPuzzle() && gameOn) {
             puzzleBoard.updatePuzzle(puzzle.showPuzzle());
             currentPlayer.playerSpinsWheel();
             display.clearConsole();
@@ -89,7 +91,8 @@ public class Game {
         System.out.println("Please choose your option:\n " +
                 "Enter [1] to request a free consonant, \n " +
                 "Enter [2] to buy a vowel for $250, \n " +
-                "Enter [3] to solve the puzzle.");
+                "Enter [3] to solve the puzzle. \n" +
+                "Quit [4]");
         System.out.print("Enter option input: ");
         String input = scanner.nextLine();
         if (input.equals("1")) {
@@ -100,6 +103,8 @@ public class Game {
             System.out.print("Please enter the phrase: ");
             String solveInput = scanner.nextLine().toUpperCase();
             puzzle.solvePuzzle(solveInput);
+        } else if(input.equals("4")){
+            gameOn = false;
         } else {
             System.out.println("Invalid input. Please choose option 1,2, or 3.");
         }
@@ -160,6 +165,10 @@ public class Game {
 
     public Player getPlayer3() {
         return player3;
+    }
+
+    public void setGameOn(boolean gameOn) {
+        this.gameOn= gameOn;
     }
 }
 
